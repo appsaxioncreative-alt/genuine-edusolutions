@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin | Genuine Edu-Solutions</title>
+<link rel="icon" href="assets/icon.jpg">
+<link rel="stylesheet" href="admin.css">
+<script type="module" src="admin.js"></script>
+</head>
+<body>
+
+<div id="auth" class="auth">
+  <form id="authForm" class="card" autocomplete="on">
+    <h1 id="aTitle">Admin sign in</h1>
+    <p id="aSub" class="muted"></p>
+    <label id="aNameWrap" hidden>Your name<input id="aName" autocomplete="name"></label>
+    <label>Email<input id="aEmail" type="email" autocomplete="email" required></label>
+    <label>Password<input id="aPass" type="password" minlength="6" autocomplete="current-password" required></label>
+    <button id="aBtn" class="btn" type="submit">Sign in</button>
+    <a id="aForgot" href="#" class="link">Forgot password?</a>
+    <a id="aSwitch" href="#" class="link"></a>
+    <p id="aErr" class="err" role="alert"></p>
+  </form>
+</div>
+
+<div id="app" class="shell" hidden>
+  <aside class="side">
+    <div class="brand"><img src="assets/icon.jpg" alt="" onerror="this.remove()"><strong>Genuine<br><span>Edu-Solutions admin</span></strong></div>
+    <nav class="tabs" aria-label="Sections">
+      <button data-tab="overview" class="on"><i>▦</i>Overview</button>
+      <button data-tab="enq"><i>✉</i>Enquiries</button>
+      <button data-tab="vis"><i>◔</i>Visitors</button>
+      <button data-tab="adm"><i>☺</i>Admins</button>
+    </nav>
+    <div class="me"><span id="who" class="muted"></span><button id="out" class="ghost">Sign out</button></div>
+  </aside>
+
+  <main>
+    <section id="t-overview">
+      <div id="stats" class="stats"></div>
+      <div class="grid">
+        <div class="card"><h3>Enquiries by course</h3><div id="bCourse"></div></div>
+        <div class="card"><h3>Enquiries by preferred state</h3><div id="bState"></div></div>
+        <div class="card"><h3>Sections people viewed</h3><div id="bSec"></div></div>
+        <div class="card"><h3>Devices</h3><div id="bDev"></div></div>
+        <div class="card"><h3>Where visitors come from</h3><div id="bSrc"></div></div>
+      </div>
+    </section>
+
+    <section id="t-enq" hidden>
+      <div class="tools">
+        <input id="q" placeholder="Search name, phone, course, state…">
+        <select id="fs"><option value="">All statuses</option><option>New</option><option>Contacted</option><option>Follow-up</option><option>Admitted</option><option>Closed</option></select>
+        <select id="fc"></select>
+        <span id="enqCount" class="muted"></span>
+      </div>
+      <div class="wrap"><table>
+        <thead><tr><th>Received</th><th>Student</th><th>Course</th><th>State</th><th>Message / notes</th><th>Status</th><th></th></tr></thead>
+        <tbody id="enqBody"></tbody>
+      </table></div>
+    </section>
+
+    <section id="t-vis" hidden>
+      <p class="muted">Latest 500 visits. Scroll shows how far down the page each visitor reached.</p>
+      <div class="wrap"><table>
+        <thead><tr><th>Started</th><th>Device</th><th>Source</th><th>Scroll depth</th><th>Time on page</th><th>Sections</th><th>Clicks</th><th>Enquired</th></tr></thead>
+        <tbody id="visBody"></tbody>
+      </table></div>
+    </section>
+
+    <section id="t-adm" hidden>
+      <div class="grid">
+        <div class="card">
+          <h3>Add an admin</h3>
+          <form id="admForm">
+            <label>Name<input id="nName" required></label>
+            <label>Email<input id="nEmail" type="email" required></label>
+            <label>Temporary password<input id="nPass" type="text" minlength="6" required></label>
+            <button class="btn" type="submit">Add admin</button>
+            <p class="muted">Share the email and temporary password with them. They can change it using “Forgot password” on the sign-in page.</p>
+          </form>
+        </div>
+        <div class="card"><h3>Current admins</h3><div id="admList"></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="toast" role="status"></div>
+</body>
+</html>
