@@ -15,7 +15,7 @@ import {
 
 /* 1) PASTE YOUR FIREBASE WEB CONFIG HERE (Firebase console → Project settings → Your apps) */
 const firebaseConfig = {
- apiKey: "AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54",
+  apiKey: "AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54",
   authDomain: "genuineedusolutions-5e2c2.firebaseapp.com",
   projectId: "genuineedusolutions-5e2c2",
   storageBucket: "genuineedusolutions-5e2c2.firebasestorage.app",
@@ -163,6 +163,11 @@ async function saveEnquiry({
   courseOption,
   state: preferredState,   // renamed so it doesn't clash with the tracker's own `state`
   stateOption,
+  location: currentLocation,   // renamed so it doesn't clash with window.location
+  heardFrom,
+  heardFromDetail,
+  source: legacySource,             // older index.html sent the answer as `source`
+  sourceDetail: legacySourceDetail, // ...and `sourceDetail`
   message
 }) {
   if (!db) {
@@ -177,6 +182,9 @@ async function saveEnquiry({
       courseOption: courseOption || "",
       state: preferredState || "",
       stateOption: stateOption || "",
+      location: (currentLocation || "").trim(),
+      heardFrom: heardFrom || legacySource || "",
+      heardFromDetail: (heardFromDetail || legacySourceDetail || "").trim(),
       message: message || "",
       status: "New",
       source: "Website",
@@ -204,6 +212,7 @@ async function saveEnquiry({
 }
 
 window.GES = { saveEnquiry, logEvent, sessionId, visitorId };
+
 /* ---------- listeners ---------- */
 if (!isBot && db) {
   flush();

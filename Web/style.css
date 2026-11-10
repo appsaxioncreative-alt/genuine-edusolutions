@@ -503,4 +503,8 @@ header.on-hero .btn-primary{background:#ffc83d !important;color:#0b2a5b !importa
 @media(min-width:851px){
   header.on-hero .navlinks a:not(.nav-cta){color:#fff !important}
   header.on-hero .navlinks a.active{color:#ffc83d !important}
-}
+}/* View more for reviews */
+.reviews .review-card.extra{display:none}
+.reviews .review-grid.expanded .review-card.extra{display:flex}
+.reviews .reviews-more{text-align:center;margin-top:32px}
+.reviews .rating-summary small{display:block;color:var(--ink-soft);font-size:12.5px;margin-top:4px;text-align:center}

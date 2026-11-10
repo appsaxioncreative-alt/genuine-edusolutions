@@ -16,7 +16,6 @@
   <script type="module" src="tracker.js"></script>
 
   <style>
-    /* ===== Header logo image ===== */
     .brand-mark{overflow:hidden;padding:0;background:#fff;display:inline-grid;place-items:center;flex:0 0 auto}
     .brand-mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 
@@ -115,26 +114,8 @@
     body{padding-bottom:0 !important}
     @media(max-width:850px){.wa-float{bottom:20px !important}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* =====================================================
    THEME: Ocean Navy + Teal + Amber
-   (paste at the end of the <style> block)
    ===================================================== */
 :root{
   --navy-950:#061a30;
@@ -156,7 +137,7 @@
 .topbar{background:var(--navy-950) !important;color:rgba(255,255,255,.85) !important}
 .topbar .pulse{background:var(--teal-500) !important}
 
-/* ===== Hero (dark, so your white text keeps working) ===== */
+/* ===== Hero ===== */
 .hero{
   background:
     radial-gradient(800px 480px at 88% 0%, rgba(245,165,36,.20), transparent 60%),
@@ -176,7 +157,7 @@
   color:#fff !important;
 }
 
-/* ===== Buttons: amber call-to-action everywhere ===== */
+/* ===== Buttons ===== */
 .btn-primary{
   background:linear-gradient(135deg,var(--amber) 0%,#ffbf47 100%) !important;
   color:var(--amber-ink) !important;
@@ -186,7 +167,7 @@
 }
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 12px 28px rgba(245,165,36,.45) !important}
 
-/* ===== Header: navy over hero, white after it ===== */
+/* ===== Header ===== */
 header{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
 header.on-hero{
   background:rgba(6,26,48,.92) !important;
@@ -220,7 +201,7 @@ header.on-hero .menu-toggle{background:rgba(255,255,255,.12) !important;color:#f
 .step-num{color:var(--teal-600) !important}
 .trust-icon{background:var(--teal-100) !important;color:var(--teal-600) !important}
 
-/* ===== Students photo (was purple + gold) ===== */
+/* ===== Students photo ===== */
 .placements{background:var(--surface) !important}
 .pf-frame{border-color:var(--teal-600) !important;box-shadow:0 0 0 4px var(--amber),0 28px 60px rgba(10,37,64,.25) !important}
 .pf-frame:before{border-color:var(--teal-600) !important}
@@ -230,7 +211,7 @@ header.on-hero .menu-toggle{background:rgba(255,255,255,.12) !important;color:#f
   .pf-frame{box-shadow:0 0 0 3px var(--amber),0 18px 40px rgba(10,37,64,.22) !important}
 }
 
-/* ===== Reviews (was purple + gold) ===== */
+/* ===== Reviews ===== */
 .reviews{background:var(--surface) !important}
 .reviews .rating-summary{box-shadow:0 8px 24px rgba(10,37,64,.08) !important}
 .reviews .rating-summary strong{color:var(--navy-900) !important}
@@ -262,24 +243,24 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
 @keyframes ilFloat{50%{transform:translateY(-8px)}}
 @media(prefers-reduced-motion:reduce){.il-float{animation:none}}
 
-/* About */
 .about-visual{background:transparent !important;box-shadow:none !important;min-height:0 !important}
 .illus-about svg{width:100%;max-width:460px;height:auto;display:block;margin:0 auto}
 
-/* Process step icons */
 .step-ico{width:76px;height:76px;margin-bottom:14px}
 .step-ico svg{width:100%;height:100%;display:block}
 
-/* Contact */
 .contact-illus{margin:6px 0 22px}
 .contact-illus svg{width:100%;max-width:300px;height:auto;display:block}
 
-/* CTA plane */
 .cta-panel{position:relative;overflow:hidden}
 .cta-panel>*{position:relative;z-index:1}
 .cta-plane{position:absolute !important;z-index:0 !important;right:270px;top:6px;width:130px;opacity:.9;pointer-events:none}
 @media(max-width:850px){.cta-plane{display:none}}
 
+/* ===== Course cards loaded from the admin panel (Firestore) ===== */
+.cc .art{position:relative;overflow:hidden}
+.cc .art .cc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cc .art .tag{z-index:2}
   </style>
 </head>
 <body>
@@ -401,21 +382,18 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
     <circle cx="372" cy="50" r="10" fill="#f5a524" opacity=".85" class="il-float"/>
     <circle cx="48" cy="276" r="7" fill="#14b8a6" opacity=".7" class="il-float d2"/>
     <ellipse cx="210" cy="322" rx="125" ry="9" fill="#0a2540" opacity=".12"/>
-    <!-- books -->
     <rect x="110" y="272" width="200" height="40" rx="8" fill="#0a2540"/>
     <rect x="126" y="284" width="168" height="6" rx="3" fill="#14b8a6"/>
     <rect x="128" y="232" width="172" height="40" rx="8" fill="#14b8a6"/>
     <rect x="144" y="244" width="140" height="6" rx="3" fill="#fff" opacity=".6"/>
     <rect x="120" y="194" width="180" height="38" rx="8" fill="#f5a524"/>
     <rect x="136" y="206" width="130" height="6" rx="3" fill="#fff" opacity=".7"/>
-    <!-- graduation cap -->
     <g class="il-float">
       <path d="M210 96l-92 38 92 38 92-38z" fill="#0a2540"/>
       <path d="M160 154v28c14 12 34 18 50 18s36-6 50-18v-28l-50 20z" fill="#12426b"/>
       <path d="M302 134v46" stroke="#f5a524" stroke-width="5" stroke-linecap="round"/>
       <circle cx="302" cy="186" r="8" fill="#f5a524"/>
     </g>
-    <!-- checklist card -->
     <g class="il-float d2" transform="translate(12 58)">
       <rect width="104" height="92" rx="14" fill="#fff" stroke="#dcebe8" stroke-width="2"/>
       <circle cx="22" cy="26" r="9" fill="#14b8a6"/><path d="M17 26l4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -425,13 +403,13 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       <circle cx="22" cy="78" r="9" fill="#f5a524"/>
       <rect x="40" y="74" width="46" height="8" rx="4" fill="#cfe3e0"/>
     </g>
-    <!-- location pin -->
     <g class="il-float" transform="translate(332 82)">
       <path d="M26 0C12 0 2 10 2 24c0 18 24 40 24 40s24-22 24-40C50 10 40 0 26 0z" fill="#f5a524"/>
       <circle cx="26" cy="24" r="9" fill="#fff"/>
     </g>
   </svg>
-</div>        </div>
+</div>
+        </div>
         <div class="about-copy">
           <div class="kicker">About us</div>
           <h2>A clearer path from your ambition to admission.</h2>
@@ -460,6 +438,7 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
           <button class="chip-f" data-f="biz">📈 Business</button>
           <button class="chip-f" data-f="tech">💻 Technology</button>
         </div>
+        <!-- Cards below are the built-in fallback. They are replaced by courses from the admin panel (Firestore) when any exist. -->
         <div class="cc-grid" id="ccGrid">
           <article class="cc" data-cat="health" style="--a:#5b45e0;--b:#8a6cf5">
             <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
@@ -552,7 +531,7 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       </div>
     </section>
 
-    <section class="placements" id="placements">
+    <!-- <section class="placements" id="placements">
       <div class="container">
         <div class="section-head">
           <div class="kicker">Our students</div>
@@ -569,7 +548,7 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
           </div>
         </figure>
       </div>
-    </section>
+    </section> -->
 
     <section class="story-section" id="success-stories">
       <div class="container">
@@ -596,39 +575,24 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       </div>
     </section>
 
-    <section class="reviews" id="reviews">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">Student voices</div>
-          <h2 class="section-title">A little feedback from students</h2>
-          <p>A few examples of the kind of feedback students may share about their guidance experience.</p>
-        </div>
-        <div class="rating-summary">
-          <strong>5.0</strong>
-          <div>
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          </div>
-        </div>
-        <div class="review-grid">
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“The guidance helped me understand the course options and the admission steps. The team was approachable and answered my questions clearly.”</blockquote>
-            <div class="review-person"><div class="review-avatar">AN</div><div><strong>Anagha Nair</strong><small>Thiruvananthapuram, Kerala · Sample profile</small></div></div>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“I was looking for information about nursing studies. It was helpful to discuss the requirements and what I should check before applying.”</blockquote>
-            <div class="review-person"><div class="review-avatar">AR</div><div><strong>Adithyan Raj</strong><small>Kollam, Kerala · Sample profile</small></div></div>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>“The admission enquiry process was simple. I could ask about different courses and get a clearer idea of the next steps.”</blockquote>
-            <div class="review-person"><div class="review-avatar">MS</div><div><strong>Meera Suresh</strong><small>Kottayam, Kerala · Sample profile</small></div></div>
-          </article>
-        </div>
+    <section class="reviews" id="reviews" hidden>
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Student voices</div>
+      <h2 class="section-title">A little feedback from students</h2>
+      <p>What students say about their guidance experience with us.</p>
+    </div>
+    <div class="rating-summary">
+      <strong id="ratingAvg">5.0</strong>
+      <div>
+        <div class="stars" id="ratingStars" aria-label="5 out of 5 stars">★★★★★</div>
+        <small id="ratingCount"></small>
       </div>
-    </section>
-
+    </div>
+    <div class="review-grid" id="reviewGrid"></div>
+    <div class="reviews-more"><button class="btn btn-primary" id="reviewMore" type="button" hidden>View more reviews ↓</button></div>
+  </div>
+</section>
     <div class="cta">
       <div class="container">
         <div class="cta-panel">
@@ -680,6 +644,25 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
           <div class="field" id="otherStateField" hidden>
             <label for="otherState">Type your preferred state</label>
             <input id="otherState" name="otherState" placeholder="e.g. Goa, Punjab, Delhi" autocapitalize="words">
+          </div>
+
+          <div class="field"><label for="location">Your current location</label><input id="location" name="location" placeholder="City / town and district, e.g. Kallara, Kottayam" autocomplete="address-level2" autocapitalize="words" required></div>
+
+          <div class="field">
+            <label for="source">How did you hear about us?</label>
+            <select id="source" name="source" required>
+              <option value="">Select one</option>
+              <option>Social media</option>
+              <option>Agent</option>
+              <option>Direct (walked in / called)</option>
+              <option>Friend or relative</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field" id="sourceDetailField" hidden>
+            <label for="sourceDetail" id="sourceDetailLabel">Tell us more (optional)</label>
+            <input id="sourceDetail" name="sourceDetail" placeholder="" autocapitalize="words">
           </div>
 
           <div class="field"><label for="message">Your question (optional)</label><textarea id="message" name="message" placeholder="Tell us what you would like to know..."></textarea></div>
@@ -743,11 +726,10 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
         img.classList.remove('image-loaded');
         img.classList.add('image-fallback');
       }, { once: true });
-      // Handle images that completed before the listener was attached.
       if (img.complete && img.naturalWidth > 0) img.classList.add('image-loaded');
     });
 
-    // ===== Mobile menu (toggle, outside tap, Escape, scroll lock-free) =====
+    // ===== Mobile menu =====
     (function(){
       const btn = document.getElementById('menuToggle'), nav = document.getElementById('navlinks');
       const setOpen = (open) => {
@@ -785,7 +767,6 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       }, 2800);
 
       const progress = document.getElementById('progress'), toTop = document.getElementById('toTop');
-      // Only real section links drive the active highlight (not the mobile menu CTA button)
       const links = [...document.querySelectorAll('.navlinks a:not(.nav-cta)')];
       const secs = links.map(a => document.querySelector(a.getAttribute('href')));
       let ticking = false;
@@ -794,15 +775,12 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
         const max = document.documentElement.scrollHeight - innerHeight;
         progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
         toTop.classList.toggle('show', scrollY > 600);
-        let cur = 0; secs.forEach((el,k) => { if (el && el.getBoundingClientRect().top < 140) cur = k; });
-        links.forEach((a,k) => a.classList.toggle('active', k === cur));
+let cur = 0; secs.forEach((el,k) => { if (el && el.offsetParent && el.getBoundingClientRect().top < 140) cur = k; });        links.forEach((a,k) => a.classList.toggle('active', k === cur));
       };
-      // Throttle scroll work to one run per frame (smoother on phones)
       const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
       addEventListener('scroll', onScroll, {passive:true}); update();
       toTop.addEventListener('click', () => scrollTo({top:0,behavior:'smooth'}));
 
-      // Course cards sit in a horizontal swipe row on phones, so don't hide them behind scroll-reveal there
       const isPhone = innerWidth <= 560;
       const targets = document.querySelectorAll('.section-head,.course-card,.step,.gallery-tile,.story-card,.review-card,.about-grid>*,.contact-grid>*,.cta-panel' + (isPhone ? '' : ',.cc'));
       if ('IntersectionObserver' in window) {
@@ -810,7 +788,6 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
         targets.forEach((el,k) => { el.classList.add('reveal'); el.style.transitionDelay = (isPhone ? 0 : (k % 3) * 90) + 'ms'; io.observe(el); });
       }
 
-      // Personalised form heading as the visitor types their name
       const nameInput = document.getElementById('name'), fg = document.getElementById('formGreet');
       nameInput.addEventListener('input', () => {
         const n = nameInput.value.trim().split(' ')[0];
@@ -824,7 +801,7 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       chips.forEach(c=>c.addEventListener('click',()=>{
         chips.forEach(x=>x.classList.toggle('active',x===c));
         const f=c.dataset.f;
-        cards.forEach(card=>card.classList.toggle('hide', f!=='all' && card.dataset.cat!==f));
+        document.querySelectorAll('#ccGrid .cc').forEach(card=>card.classList.toggle('hide', f!=='all' && card.dataset.cat!==f));
         grid.scrollTo({left:0});
         c.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
       }));
@@ -851,6 +828,25 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       }));
     })();
 
+    // ===== "How did you hear about us?" -> optional detail field =====
+    (function(){
+      const src = document.getElementById('source');
+      const wrap = document.getElementById('sourceDetailField');
+      const label = document.getElementById('sourceDetailLabel');
+      const input = document.getElementById('sourceDetail');
+      const hints = {
+        'Social media': ['Which platform? (optional)', 'e.g. Instagram, Facebook, YouTube'],
+        'Agent': ['Agent name (optional)', 'Name of the agent who told you'],
+        'Friend or relative': ['Their name (optional)', 'Name of the person who referred you'],
+        'Other': ['Please tell us (optional)', 'e.g. newspaper, poster, school']
+      };
+      src.addEventListener('change', () => {
+        const h = hints[src.value];
+        wrap.hidden = !h;
+        if (h) { label.textContent = h[0]; input.placeholder = h[1]; } else { input.value = ''; }
+      });
+    })();
+
     // ===== Enquiry: save to Firestore (via tracker.js), then open WhatsApp =====
     async function sendEnquiry(event) {
       event.preventDefault();
@@ -865,17 +861,19 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
       const stateSelect = document.getElementById('state').value;
       const otherState = document.getElementById('otherState').value.trim();
       const message = document.getElementById('message').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const source = document.getElementById('source').value;
+      const sourceDetail = document.getElementById('sourceDetail').value.trim();
 
       const isOtherCourse = courseSelect === 'Other UG / PG course';
       const isOtherState = stateSelect === 'Other state';
 
-      if (!name || !phone || !courseSelect || !stateSelect ||
+      if (!name || !phone || !courseSelect || !stateSelect || !location || !source ||
           (isOtherCourse && !otherCourse) || (isOtherState && !otherState)) {
         alert("Please fill in all required fields.");
         return;
       }
 
-      // Final values: typed text replaces the generic "Other" option
       const course = isOtherCourse ? otherCourse : courseSelect;
       const preferredState = isOtherState ? otherState : stateSelect;
 
@@ -885,6 +883,8 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
         `Phone: ${phone}\n` +
         `Course: ${course}\n` +
         `Preferred state: ${preferredState}\n` +
+        `Current location: ${location}\n` +
+        `Heard about us via: ${source}${sourceDetail ? ' (' + sourceDetail + ')' : ''}\n` +
         `Message: ${message || 'I would like more information.'}`;
 
       const whatsappURL = `https://wa.me/918921296288?text=${encodeURIComponent(whatsappText)}`;
@@ -900,10 +900,13 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
         const enquiryId = await window.GES.saveEnquiry({
           name,
           phone,
-          course,                      // final course (typed text if "Other")
-          courseOption: courseSelect,  // what was picked in the dropdown
-          state: preferredState,       // final state (typed text if "Other state")
+          course,
+          courseOption: courseSelect,
+          state: preferredState,
           stateOption: stateSelect,
+          location,
+          heardFrom: source,
+          heardFromDetail: sourceDetail,
           message
         });
 
@@ -922,5 +925,176 @@ footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !importa
     }
     window.sendEnquiry = sendEnquiry;
   </script>
+
+  <!-- ===== Courses from the admin panel (Firestore) ===== -->
+  <script type="module">
+  import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const cfg = {
+    apiKey: "AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54",
+    authDomain: "genuineedusolutions-5e2c2.firebaseapp.com",
+    projectId: "genuineedusolutions-5e2c2",
+    storageBucket: "genuineedusolutions-5e2c2.firebasestorage.app",
+    messagingSenderId: "7797802437",
+    appId: "1:7797802437:web:f72b54f67bf4a6e2e677ac"
+  };
+  let app;
+  try { app = getApp(); } catch { app = initializeApp(cfg); }
+  const db = getFirestore(app);
+
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+  const THEME = {
+    health: ["#5b45e0", "#8a6cf5", "Healthcare"],
+    biz:    ["#e0562a", "#ffb84d", "Business"],
+    tech:   ["#2a2870", "#5b45e0", "Technology"],
+    more:   ["#1b1a4e", "#c2486f", "More options"]
+  };
+
+  // SVG fallback used when a course has no image
+  const ART = {
+    health: `<svg viewBox="0 0 260 150" aria-hidden="true"><circle cx="130" cy="72" r="46" fill="#fff" opacity=".95"/><rect x="119" y="46" width="22" height="52" rx="6" fill="#e0562a"/><rect x="104" y="61" width="52" height="22" rx="6" fill="#e0562a"/><path class="ecg" d="M10 124h58l10-22 14 40 12-30 8 12h148" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg>`,
+    biz:    `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="40" y="22" width="180" height="104" rx="14" fill="#fff" opacity=".96"/><rect x="68" y="76" width="22" height="38" rx="5" fill="#8a6cf5"/><rect x="104" y="58" width="22" height="56" rx="5" fill="#5b45e0"/><rect x="140" y="44" width="22" height="70" rx="5" fill="#e0562a"/><rect x="176" y="34" width="22" height="80" rx="5" fill="#ffb84d"/></svg>`,
+    tech:   `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="24" width="136" height="88" rx="10" fill="#1b1a4e"/><rect x="68" y="30" width="124" height="76" rx="6" fill="#2a2870"/><path d="M80 48h34" stroke="#ffb84d" stroke-width="5" stroke-linecap="round"/><path d="M80 62h60" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M92 76h44" stroke="#8a6cf5" stroke-width="5" stroke-linecap="round"/><path d="M44 118h172l-12 14H56z" fill="#fff" opacity=".9"/></svg>`,
+    more:   `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="104" width="136" height="14" rx="4" fill="#fff" opacity=".9"/><rect x="72" y="90" width="116" height="14" rx="4" fill="#ffb84d"/><rect x="82" y="76" width="96" height="14" rx="4" fill="#fff" opacity=".8"/><path d="M130 22l-70 28 70 28 70-28z" fill="#1b1a4e"/><path d="M92 62v18c10 8 26 12 38 12s28-4 38-12V62l-38 15z" fill="#2a2870"/></svg>`
+  };
+
+  const grid = document.getElementById("ccGrid");
+  const courseSelect = document.getElementById("course");
+
+  function cardHTML(c) {
+    const cat = THEME[c.category] ? c.category : "more";
+    const [a, b, label] = THEME[cat];
+    const art = c.imageUrl
+      ? `<img class="cc-img" src="${esc(c.imageUrl)}" alt="${esc(c.title)}" loading="lazy" referrerpolicy="no-referrer">`
+      : ART[cat];
+    return `<article class="cc" data-cat="${cat}" style="--a:${a};--b:${b}">
+      <div class="art">${art}<span class="tag">${label}</span></div>
+      <div class="cc-body">
+        <h3>${esc(c.title)}</h3>
+        <p>${esc(c.description || "")}</p>
+        <div class="cc-links"><a class="cc-link" href="#contact" data-course="${esc(c.title)}">Enquire about this course →</a></div>
+      </div>
+    </article>`;
+  }
+
+  function applyFilter() {
+    const active = document.querySelector(".chip-f.active");
+    const f = active ? active.dataset.f : "all";
+    document.querySelectorAll("#ccGrid .cc").forEach(card =>
+      card.classList.toggle("hide", f !== "all" && card.dataset.cat !== f));
+  }
+
+  function render(list) {
+    grid.innerHTML = list.map(cardHTML).join("");
+
+    // broken image -> SVG fallback
+    grid.querySelectorAll(".cc-img").forEach(img => img.addEventListener("error", () => {
+      const cat = img.closest(".cc").dataset.cat;
+      img.outerHTML = ART[cat];
+    }, { once: true }));
+
+    // rebuild the form's course dropdown
+    const keep = courseSelect.value;
+    courseSelect.innerHTML = '<option value="">Select a course</option>' +
+      list.map(c => `<option>${esc(c.title)}</option>`).join("") +
+      '<option>Other UG / PG course</option><option>Not sure yet</option>';
+    if ([...courseSelect.options].some(o => o.value === keep)) courseSelect.value = keep;
+
+    applyFilter();
+  }
+
+  // "Enquire" links on dynamic cards -> prefill the form
+  grid.addEventListener("click", e => {
+    const a = e.target.closest("[data-course]");
+    if (!a) return;
+    courseSelect.value = a.dataset.course;
+    courseSelect.dispatchEvent(new Event("change"));
+  });
+
+  // Live data from the admin panel
+  onSnapshot(
+    query(collection(db, "courses"), orderBy("displayOrder", "asc")),
+    snap => {
+      const list = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(c => c.active !== false && c.title);
+      if (list.length) render(list);   // if none, the built-in cards stay as a fallback
+    },
+    err => console.warn("Courses could not be loaded, showing defaults:", err)
+  );
+  </script>
+
+  <!-- ===== Gallery from the admin panel (Firestore + Cloudinary) ===== -->
+  <script type="module">
+  import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  const cfg = { apiKey:"AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54", authDomain:"genuineedusolutions-5e2c2.firebaseapp.com", projectId:"genuineedusolutions-5e2c2", storageBucket:"genuineedusolutions-5e2c2.firebasestorage.app", messagingSenderId:"7797802437", appId:"1:7797802437:web:f72b54f67bf4a6e2e677ac" };
+  let app; try { app = getApp(); } catch { app = initializeApp(cfg); }
+  const db = getFirestore(app);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const opt = u => u.includes("/upload/") ? u.replace("/upload/", "/upload/f_auto,q_auto,w_1200/") : u;
+  const grid = document.querySelector("#gallery .gallery-grid");
+  onSnapshot(query(collection(db, "gallery"), orderBy("displayOrder", "asc")), snap => {
+    const list = snap.docs.map(d => d.data()).filter(g => g.active !== false && g.imageUrl);
+    if (!list.length) return;   // no photos yet: keep the built-in tiles
+    grid.innerHTML = list.map(g =>
+      `<div class="gallery-tile"><img class="image-loaded" src="${esc(opt(g.imageUrl))}" alt="${esc(g.caption || "Gallery photo")}" loading="lazy">${g.caption ? `<span>${esc(g.caption)}</span>` : ""}</div>`
+    ).join("");
+  }, err => console.warn("Gallery could not be loaded, showing defaults:", err));
+
+
+
+
+
+
+
+  
+  </script>
+
+
+
+<!-- ===== Reviews from the admin panel (Firestore) ===== -->
+<script type="module">
+import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const cfg = { apiKey:"AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54", authDomain:"genuineedusolutions-5e2c2.firebaseapp.com", projectId:"genuineedusolutions-5e2c2", storageBucket:"genuineedusolutions-5e2c2.firebasestorage.app", messagingSenderId:"7797802437", appId:"1:7797802437:web:f72b54f67bf4a6e2e677ac" };
+let app; try { app = getApp(); } catch { app = initializeApp(cfg); }
+const db = getFirestore(app);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const section = document.getElementById("reviews");
+const grid = document.getElementById("reviewGrid");
+const moreBtn = document.getElementById("reviewMore");
+const VISIBLE = 3;
+const stars = n => { n = Math.max(1, Math.min(5, Math.round(Number(n) || 5))); return "★".repeat(n) + "☆".repeat(5 - n); };
+const initials = name => String(name || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+
+onSnapshot(query(collection(db, "reviews"), orderBy("displayOrder", "asc")), snap => {
+  const list = snap.docs.map(d => d.data()).filter(r => r.active !== false && r.name && r.text);
+  if (!list.length) { section.hidden = true; return; }
+  section.hidden = false;
+
+  const avg = list.reduce((a, r) => a + (Number(r.rating) || 5), 0) / list.length;
+  document.getElementById("ratingAvg").textContent = avg.toFixed(1);
+  document.getElementById("ratingStars").textContent = stars(avg);
+  document.getElementById("ratingStars").setAttribute("aria-label", avg.toFixed(1) + " out of 5 stars");
+  document.getElementById("ratingCount").textContent = "Based on " + list.length + (list.length === 1 ? " review" : " reviews");
+
+  grid.classList.remove("expanded");
+  grid.innerHTML = list.map((r, i) => `
+    <article class="review-card${i >= VISIBLE ? " extra" : ""}">
+      <div class="stars" aria-label="${Number(r.rating) || 5} out of 5 stars">${stars(r.rating)}</div>
+      <blockquote>“${esc(r.text)}”</blockquote>
+      <div class="review-person"><div class="review-avatar">${esc(initials(r.name))}</div><div><strong>${esc(r.name)}</strong>${r.location ? `<small>${esc(r.location)}</small>` : ""}</div></div>
+    </article>`).join("");
+
+  moreBtn.hidden = list.length <= VISIBLE;
+  moreBtn.textContent = "View more reviews ↓";
+}, err => console.warn("Reviews could not be loaded:", err));
+
+moreBtn.addEventListener("click", () => {
+  const open = grid.classList.toggle("expanded");
+  moreBtn.textContent = open ? "Show fewer reviews ↑" : "View more reviews ↓";
+  if (!open) section.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+</script>
 </body>
-</html>
