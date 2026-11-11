@@ -279,3 +279,42 @@ if (!isBot && db) {
     if (!fields.has(e.target.id)) { fields.add(e.target.id); logEvent("form_field", e.target.id); }
   });
 }
+
+
+
+
+/* ---- Hero story + course-card stories (real stories only) ---- */
+let STORY_LIST = [], heroTimer;
+const clip = (t, n = 150) => t.length > n ? t.slice(0, n).replace(/\s+\S*$/, "") + "…" : t;
+const heroBox = document.getElementById("heroStory");
+
+function showHero(i) {
+  const s = STORY_LIST[i]; if (!s) return;
+  heroBox.classList.add("swap");
+  setTimeout(() => {
+    document.getElementById("hsStars").textContent = Number(s.rating) ? stars(s.rating) : "";
+    document.getElementById("hsText").textContent = "“" + clip(s.story || s.text) + "”";
+    document.getElementById("hsWho").textContent = "— " + s.name + [s.course, s.college].filter(Boolean).map(x => " · " + x).join("");
+    heroBox.classList.remove("swap");
+  }, 250);
+}
+function startHero() {
+  clearInterval(heroTimer);
+  heroBox.hidden = !STORY_LIST.length;
+  if (!STORY_LIST.length) return;
+  let i = 0; showHero(0);
+  if (STORY_LIST.length > 1) heroTimer = setInterval(() => showHero(i = (i + 1) % STORY_LIST.length), 6000);
+}
+
+const toks = t => String(t || "").toLowerCase().split(/\s*(?:&|,|\/|\band\b)\s*/);
+function courseStories() {
+  document.querySelectorAll(".cc").forEach(card => {
+    const q = card.querySelector(".cc-story"), title = (card.dataset.title || "").toLowerCase();
+    const hit = STORY_LIST.find(s => s.course && (toks(title).includes(String(s.course).toLowerCase().trim()) || title.includes(String(s.course).toLowerCase().trim())));
+    if (!hit) { q.hidden = true; return; }
+    q.innerHTML = `“${esc(clip(hit.story || hit.text, 120))}”<cite>— ${esc(hit.name)}</cite>`;
+    q.hidden = false;
+  });
+}
+const _rc = window.renderCourses;                       // re-apply after admin-panel courses redraw
+window.renderCourses = (l, r) => { _rc(l, r); courseStories(); };

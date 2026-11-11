@@ -11,6 +11,80 @@
 <link rel="apple-touch-icon" href="assets/icon.jpg">
 <link rel="stylesheet" href="style.css">
 <script type="module" src="tracker.js"></script>
+
+<!-- Cinema film-strip story ticker + header fix (self-contained, no changes needed in style.css) -->
+<style>
+/* Header: only ONE "Speak to an Advisor" button (the duplicate inside the menu is hidden) */
+.navlinks .nav-cta{display:none!important}
+
+/* Film strip pinned to the bottom of the hero so it is visible on first load */
+.hero{position:relative}
+.hero.has-film{padding-bottom:158px!important}
+.hero>.hero-story{
+  position:absolute;left:0;right:0;bottom:0;width:auto;max-width:none;margin:0;padding:0;
+  border:0;border-radius:0;background:none;box-shadow:none;
+  -webkit-backdrop-filter:none;backdrop-filter:none;z-index:2;
+}
+.hero-story[hidden]{display:none!important}
+.hs-viewport{
+  overflow:hidden;position:relative;
+  background:linear-gradient(180deg,rgba(3,20,16,.55),rgba(3,20,16,.92));
+  border-top:1px solid rgba(255,255,255,.14);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+}
+.hs-track{
+  display:flex;width:max-content;
+  animation:hsScroll var(--hs-dur,60s) linear infinite;
+  will-change:transform;
+}
+.hs-track.static{animation:none;width:auto;margin:0 auto}
+@keyframes hsScroll{to{transform:translateX(-50%)}}
+
+/* Pause on hover / focus / touch / off-screen */
+.hs-viewport:hover .hs-track,
+.hs-viewport:focus-within .hs-track,
+.hero-story.paused .hs-track{animation-play-state:paused}
+
+/* One film frame */
+.hs-card{
+  flex:0 0 300px;position:relative;padding:26px 12px;
+  background:#0a1c18;border-left:2px solid rgba(0,0,0,.6);
+}
+/* sprocket holes (period 30px divides the 300px frame exactly, so they line up between frames) */
+.hs-card::before,.hs-card::after{
+  content:"";position:absolute;left:0;right:0;height:9px;opacity:.85;
+  background:repeating-linear-gradient(90deg,transparent 0 7px,#e8f4f0 7px 19px,transparent 19px 30px);
+  -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000);
+}
+.hs-card::before{top:7px}
+.hs-card::after{bottom:7px}
+.hs-frame{
+  background:linear-gradient(135deg,#fffaf0,#eef9f5);color:#10303a;text-align:left;
+  border-radius:6px;padding:9px 12px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),0 0 18px rgba(245,166,35,.12);
+}
+.hs-stars{color:#f5a623;font-size:13px;letter-spacing:2px;line-height:1;min-height:13px}
+.hs-frame p{
+  margin:6px 0 7px;font-size:13px;line-height:1.45;font-style:italic;color:#27424b;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.hs-frame small{display:block;font-weight:700;font-size:12px;color:#0e8f78;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+@media (max-width:560px){
+  .hs-card{flex-basis:270px}
+  .hero.has-film{padding-bottom:150px!important}
+}
+
+/* Less motion: no auto-scroll, swipe manually */
+@media (prefers-reduced-motion:reduce){
+  .hs-track{animation:none;width:auto}
+  .hs-viewport{overflow-x:auto;scroll-snap-type:x proximity;-webkit-mask-image:none;mask-image:none}
+  .hs-card{scroll-snap-align:start}
+  .hs-card[aria-hidden="true"]{display:none}
+}
+</style>
 </head>
 <body>
 <div id="progress"></div>
@@ -38,9 +112,12 @@
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div>
+<section class="hero" id="home">
+  <div class="container">
+
+    <!-- Row 1: text + card -->
+    <div class="hero-grid">
+      <div class="hero-text">
         <div class="eyebrow"><i></i><span class="eb-greet"><span id="greet">Welcome</span> <span class="wave">👋</span></span><span class="eb-dot">·</span><span class="eb-tail">Your trusted education partner</span></div>
         <h1>Build your future with the <span id="rot" class="rot">right education.</span></h1>
         <p>Explore course opportunities and get guidance for admissions to colleges in Kerala and across India. Your next step starts with the right information.</p>
@@ -50,15 +127,26 @@
         </div>
         <div class="hero-note">Personal guidance • Course information • Admission support</div>
       </div>
-      <div class="students" id="students" aria-hidden="true"></div>
-      <aside class="hero-card">
+
+     
+    </div>
+
+    <!-- Row 2: the kids -->
+    <div class="students" id="students" aria-hidden="true"></div>
+
+    <!-- Row 3: film strip, directly after the kids -->
+    <div class="hero-story" id="heroStory" hidden aria-label="What our students say">
+      <div class="hs-viewport" id="hsViewport"><div class="hs-track" id="hsTrack"></div></div>
+    </div>
+
+     <!-- <aside class="hero-card">
         <div class="cap">Find your direction</div>
         <h2>Explore pathways across popular study fields.</h2>
         <div class="course-pills"><span>BSc Nursing</span><span>GNM</span><span>BBA</span><span>BCA</span><span>BOT</span><span>BPT</span><span>UG &amp; PG</span><span>And more</span></div>
-      </aside>
-    </div>
-  </section>
+      </aside> -->
 
+  </div>
+</section>
   <div class="trust-strip">
     <div class="container trust-grid">
       <div class="trust-item"><div class="trust-icon">◎</div><div><strong>Student-focused guidance</strong><small>Understand your options clearly</small></div></div>
@@ -339,7 +427,8 @@ document.querySelectorAll('.gallery-tile img').forEach(img=>{
     const cat=LABEL[c.category]?c.category:'more';
     const art=c.imageUrl?`<img class="cc-img" src="${esc(c.imageUrl)}" alt="${esc(c.title)}" loading="lazy" referrerpolicy="no-referrer">`:ART[cat];
     const links=(c.links||[[c.title,'Enquire about this course →']]).map(l=>`<a class="cc-link" href="#contact" data-course="${esc(l[0])}">${esc(l[1])}</a>`).join('');
-    return `<article class="cc" data-cat="${cat}"><div class="art">${art}<span class="tag">${LABEL[cat]}</span></div><div class="cc-body"><h3>${esc(c.title)}</h3><p>${esc(c.description||'')}</p><div class="cc-links">${links}</div></div></article>`;
+    const det=(c.details||[]).map(d=>`<li><b>${esc(d[0])}</b><span>${esc(d[1])}</span></li>`).join('');
+    return `<article class="cc" data-cat="${cat}" data-title="${esc(c.title)}"><div class="art">${art}<span class="tag">${LABEL[cat]}</span></div><div class="cc-body"><h3>${esc(c.title)}</h3><p>${esc(c.description||'')}</p>${det?`<details class="cc-more"><summary>Course details</summary><ul class="cc-det">${det}</ul></details>`:''}<blockquote class="cc-story" hidden></blockquote><div class="cc-links">${links}</div></div></article>`;
   }
   function applyFilter(){
     const a=document.querySelector('.chip-f.active'), f=a?a.dataset.f:'all';
@@ -458,10 +547,76 @@ const section = document.getElementById("stories"), grid = document.getElementBy
       moreBtn = document.getElementById("reviewMore"), summary = section.querySelector(".rating-summary"),
       navLink = document.querySelector('.navlinks a[href="#stories"]');
 
+/* ---- Hero film strip: student comments roll slowly like a cinema reel ----
+   UX rules: slow constant speed (transform only); pauses on hover / focus / touch / off-screen / hidden tab;
+   reduced-motion → manual swipe; 1 story → static; 2+ → seamless loop sized to the screen width */
+const heroSection = document.getElementById("home"),
+      heroBox = document.getElementById("heroStory"),
+      heroView = document.getElementById("hsViewport"),
+      heroTrack = document.getElementById("hsTrack");
+const HERO_SPEED = 22;                       // px per second (lower = slower)
+let heroList = [], heroIO = null, heroResume = null, heroCount = 0;
+const frameW = () => matchMedia("(max-width:560px)").matches ? 270 : 300;
+
+function heroCard(s, clone) {
+  const t = String(s.story || s.text).trim();
+  const short = t.length > 90 ? t.slice(0, 87).trimEnd() + "…" : t;
+  const who = s.name + (s.course ? " · " + s.course : "");
+  return `<article class="hs-card"${clone ? ' aria-hidden="true"' : ""}><div class="hs-frame">
+    <div class="hs-stars">${Number(s.rating) ? stars(s.rating) : ""}</div>
+    <p>“${esc(short)}”</p><small>${esc(who)}</small></div></article>`;
+}
+
+function buildHero() {
+  if (heroIO) { heroIO.disconnect(); heroIO = null; }
+  const list = heroList;
+  if (!heroBox || !heroTrack) return;
+  if (!list.length) { heroBox.hidden = true; heroTrack.innerHTML = ""; heroSection.classList.remove("has-film"); heroCount = 0; return; }
+
+  heroSection.classList.add("has-film");
+  heroBox.hidden = false;
+  if (list.length === 1) {
+    heroTrack.className = "hs-track static";
+    heroTrack.innerHTML = heroCard(list[0], false);
+    heroCount = 1; return;
+  }
+
+  const w = frameW();
+  const need = Math.min(16, Math.max(4, Math.ceil(innerWidth / w) + 1));   // one set must be wider than the screen
+  let set = list.slice(); while (set.length < need) set = set.concat(list);
+  heroCount = need;
+  heroTrack.className = "hs-track";
+  heroTrack.innerHTML = set.map(s => heroCard(s, false)).join("") + set.map(s => heroCard(s, true)).join("");
+  heroTrack.style.setProperty("--hs-dur", Math.round(set.length * w / HERO_SPEED) + "s");
+
+  if ("IntersectionObserver" in window) {
+    heroIO = new IntersectionObserver(es => heroBox.classList.toggle("paused", !es[0].isIntersecting), { threshold: 0.05 });
+    heroIO.observe(heroBox);
+  }
+}
+function startHeroStories(list) { heroList = list; buildHero(); }
+
+let heroRz = null;
+addEventListener("resize", () => {
+  clearTimeout(heroRz);
+  heroRz = setTimeout(() => { if (heroList.length > 1) buildHero(); }, 300);
+});
+if (heroView) {
+  heroView.addEventListener("touchstart", () => { clearTimeout(heroResume); heroBox.classList.add("paused"); }, { passive: true });
+  const resume = () => { clearTimeout(heroResume); heroResume = setTimeout(() => heroBox.classList.remove("paused"), 2500); };
+  heroView.addEventListener("touchend", resume, { passive: true });
+  heroView.addEventListener("touchcancel", resume, { passive: true });
+}
+document.addEventListener("visibilitychange", () => {
+  if (heroTrack) heroTrack.style.animationPlayState = document.hidden ? "paused" : "";
+});
+
 onSnapshot(live(STORIES), snap => {
   const list = snap.docs.map(d => d.data()).filter(s => s.active !== false && s.name && (s.story || s.text));
-  if (!list.length) { section.hidden = true; navLink.hidden = true; return; }   // nothing to show → hide section + nav link
+  if (!list.length) { section.hidden = true; navLink.hidden = true; startHeroStories([]); return; }
   section.hidden = false; navLink.hidden = false;
+
+  startHeroStories(list);
 
   const rated = list.map(s => Number(s.rating)).filter(n => n >= 1 && n <= 5);   // rating comes only from the stories
   summary.hidden = !rated.length;
