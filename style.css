@@ -14,7 +14,7 @@
     header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
     .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--navy);letter-spacing:-.4px}
-    .brand-mark{width:45px;height:45px;border-radius:14px;background:linear-gradient(145deg,#5b45e0,#8a6cf5);display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 8px 20px rgba(91,69,224,.30)}
+    .brand-mark{width:65px;height:65px;border-radius:14px;background:linear-gradient(145deg,#5b45e0,#8a6cf5);display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 8px 20px rgba(91,69,224,.30)}
     .brand small{display:block;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;margin-top:-3px}
     .navlinks{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:650;color:#4a4a73}
     .navlinks a:hover{color:var(--blue)}
