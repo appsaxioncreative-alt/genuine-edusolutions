@@ -1,1099 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0b2a5b">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Genuine Edu-Solutions helps students explore admissions and course opportunities in Kerala and across India.">
-  <title>Genuine Edu-Solutions | Your Education, Your Future</title>
-
-  <!-- Icon (browser tab + phone home screen) -->
-  <link rel="icon" type="image/jpeg" href="assets/icon.jpg">
-  <link rel="apple-touch-icon" href="assets/icon.jpg">
-
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="tracker.js"></script>
-
-  <style>
-    .brand-mark{overflow:hidden;padding:0;background:#fff;display:inline-grid;place-items:center;flex:0 0 auto}
-    .brand-mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit,}
-
-    /* ===== Hidden form fields ===== */
-    .field[hidden]{display:none}
-
-    /* ===== Placements / batch photo ===== */
-    .placements{background:#f6f4ff;padding:82px 0;isolation:isolate}
-    .pf-frame{position:relative;margin:0 auto;max-width:1000px;padding:10px;border-radius:34px;background:#fff;border:4px solid #5b45e0;box-shadow:0 0 0 4px #ffb84d,0 28px 60px rgba(27,26,78,.25)}
-    .pf-frame:before{content:"";position:absolute;inset:-22px -22px 22px 22px;border:2px dashed #5b45e0;border-radius:40px;opacity:.35;z-index:-1}
-    .pf-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/9}
-    .pf-photo img{width:100%;height:100%;object-fit:cover;object-position:center 72%;display:block;transition:transform .6s}
-    .pf-frame:hover .pf-photo img{transform:scale(1.04)}
-    .pf-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(27,26,78,.85) 0%,rgba(27,26,78,0) 45%)}
-    .pf-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 28px 22px;color:#fff;text-align:left}
-    .pf-cap strong{display:inline-block;background:#ffb84d;color:#3a2a00;font-size:12px;font-weight:850;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:8px}
-    .pf-cap span{display:block;font-size:16px;font-weight:650}
-    @media(max-width:850px){.placements{padding:64px 0}}
-    @media(max-width:560px){
-      .placements{padding:50px 0}
-      .pf-frame{padding:6px;border-width:3px;border-radius:22px;box-shadow:0 0 0 3px #ffb84d,0 18px 40px rgba(27,26,78,.22)}
-      .pf-frame:before{display:none}
-      .pf-photo{border-radius:16px;aspect-ratio:4/3}
-      .pf-cap{padding:0 16px 14px}
-      .pf-cap span{font-size:13px}
-    }
-
-    /* ===== Reviews: aligned + responsive ===== */
-    .reviews{padding:82px 0;background:#f6f4ff;overflow-x:clip}
-    .reviews .container{width:min(1100px,calc(100% - 40px));margin:0 auto}
-    .reviews .section-head{text-align:center;max-width:680px;margin:0 auto 28px}
-    .reviews .rating-summary{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 36px;width:fit-content;padding:12px 24px;background:#fff;border-radius:999px;box-shadow:0 8px 24px rgba(27,26,78,.08)}
-    .reviews .rating-summary strong{font-size:38px;line-height:1;color:#1b1a4e;letter-spacing:-1px}
-    .reviews .rating-summary .stars{font-size:20px}
-    .reviews .stars{color:#ffb84d;letter-spacing:3px;line-height:1}
-    .reviews .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
-    .reviews .review-card{display:flex;flex-direction:column;gap:16px;height:100%;margin:0;padding:26px;background:#fff;border:1px solid #e6e2fb;border-radius:22px;box-shadow:0 12px 30px rgba(27,26,78,.08);text-align:left;transition:transform .25s,box-shadow .25s}
-    .reviews .review-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(27,26,78,.14)}
-    .reviews .review-card blockquote{margin:0;flex:1;font-size:15.5px;line-height:1.65;color:#3d3c63}
-    .reviews .review-person{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #eeebfb}
-    .reviews .review-avatar{flex:0 0 46px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#5b45e0,#8a6cf5);color:#fff;font-weight:800;font-size:15px}
-    .reviews .review-person div:last-child{min-width:0}
-    .reviews .review-person strong{display:block;color:#1b1a4e;font-size:15px}
-    .reviews .review-person small{display:block;color:#6b6a8e;font-size:12.5px;line-height:1.4}
-    @media(max-width:900px){
-      .reviews{padding:64px 0}
-      .reviews .review-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
-    }
-    @media(max-width:560px){
-      .reviews{padding:50px 0}
-      .reviews .container{width:calc(100% - 32px)}
-      .reviews .rating-summary{padding:10px 18px;margin-bottom:26px}
-      .reviews .rating-summary strong{font-size:32px}
-      .reviews .review-card{padding:20px;border-radius:18px;gap:14px}
-      .reviews .review-card blockquote{font-size:14.5px}
-    }
-
-    /* ===== Blue + gold hero background ===== */
-    .hero{
-      background:
-        radial-gradient(900px 500px at 85% 0%, rgba(255,200,61,.18), transparent 60%),
-        linear-gradient(135deg,#071c40 0%,#0b2a5b 45%,#1f6feb 140%);
-    }
-    .cta-panel{background:linear-gradient(135deg,#0b2a5b 0%,#1f6feb 120%)}
-
-    /* ===== Header: blue over the hero, white after it ===== */
-    header{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
-    header.on-hero{
-      background:#071c40 !important;
-      backdrop-filter:none !important;
-      box-shadow:none !important;
-      border-bottom:1px solid rgba(255,255,255,.1) !important;
-    }
-    header.on-hero .brand{color:#fff !important}
-    header.on-hero .brand small{color:rgba(255,255,255,.7) !important}
-    header.on-hero .btn-primary{background:#ffc83d !important;color:#0b2a5b !important}
-    @media(min-width:851px){
-      header.on-hero .navlinks a:not(.nav-cta){color:#fff !important}
-      header.on-hero .navlinks a.active{color:#ffc83d !important}
-    }
-
-    /* ===== Three-line menu button matches the header ===== */
-    .menu-toggle{background:#eef4ff !important;color:#0b2a5b !important;border:1px solid #dbe5f7 !important;transition:background .3s,color .3s,border-color .3s}
-    header.on-hero .menu-toggle{background:rgba(255,255,255,.12) !important;color:#fff !important;border-color:rgba(255,255,255,.35) !important}
-
-    /* ===== Greeting pill (eyebrow): clean on all screens ===== */
-    .eyebrow{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 8px;max-width:100%}
-    .eyebrow .eb-greet{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-    @media(max-width:560px){
-      .eyebrow{display:flex;flex-direction:column;gap:3px;width:fit-content;max-width:calc(100% - 8px);margin-left:auto;margin-right:auto;padding:10px 20px;border-radius:22px;text-align:center;font-size:11px;letter-spacing:1.2px;line-height:1.35}
-      .eyebrow i,.eyebrow .eb-dot{display:none}
-    }
-
-    /* ===== Bottom navigation removed ===== */
-    .mbar{display:none !important}
-    body{padding-bottom:0 !important}
-    @media(max-width:850px){.wa-float{bottom:20px !important}}
-
-/* =====================================================
-   THEME: Ocean Navy + Teal + Amber
-   ===================================================== */
-:root{
-  --navy-950:#061a30;
-  --navy-900:#0a2540;
-  --navy-700:#12426b;
-  --teal-600:#0f9d8f;
-  --teal-500:#14b8a6;
-  --teal-100:#d9f3ef;
-  --amber:#f5a524;
-  --amber-dark:#d98a0c;
-  --amber-ink:#3b2500;
-  --surface:#f3f9f8;
-  --line:#dcebe8;
-  --ink:#0a2540;
-  --ink-soft:#4b6178;
-}
-
-/* ===== Top info bar ===== */
-.topbar{background:var(--navy-950) !important;color:rgba(255,255,255,.85) !important}
-.topbar .pulse{background:var(--teal-500) !important}
-
-/* ===== Hero ===== */
-.hero{
-  background:
-    radial-gradient(800px 480px at 88% 0%, rgba(245,165,36,.20), transparent 60%),
-    radial-gradient(700px 500px at 0% 100%, rgba(20,184,166,.22), transparent 65%),
-    linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 50%, var(--navy-700) 130%) !important;
-}
-.hero .rot{color:var(--amber) !important}
-.hero-card{
-  background:rgba(255,255,255,.08) !important;
-  border:1px solid rgba(255,255,255,.18) !important;
-  backdrop-filter:blur(10px);
-}
-.hero-card .cap{color:var(--amber) !important}
-.course-pills span{
-  background:rgba(255,255,255,.12) !important;
-  border:1px solid rgba(255,255,255,.22) !important;
-  color:#fff !important;
-}
-
-/* ===== Buttons ===== */
-.btn-primary{
-  background:linear-gradient(135deg,var(--amber) 0%,#ffbf47 100%) !important;
-  color:var(--amber-ink) !important;
-  border:0 !important;
-  box-shadow:0 8px 22px rgba(245,165,36,.35) !important;
-  transition:transform .2s, box-shadow .2s, filter .2s;
-}
-.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 12px 28px rgba(245,165,36,.45) !important}
-
-/* ===== Header ===== */
-header{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
-header.on-hero{
-  background:rgba(6,26,48,.92) !important;
-  backdrop-filter:blur(12px) saturate(140%) !important;
-  box-shadow:none !important;
-  border-bottom:1px solid rgba(255,255,255,.1) !important;
-}
-header.on-hero .brand{color:#fff !important}
-header.on-hero .brand small{color:rgba(255,255,255,.7) !important}
-header.on-hero .btn-primary{background:linear-gradient(135deg,var(--amber),#ffbf47) !important;color:var(--amber-ink) !important}
-header:not(.on-hero) .brand{color:var(--navy-900) !important}
-header:not(.on-hero) .brand small{color:var(--teal-600) !important}
-@media(min-width:851px){
-  header.on-hero .navlinks a:not(.nav-cta){color:#fff !important}
-  header.on-hero .navlinks a.active{color:var(--amber) !important}
-  header:not(.on-hero) .navlinks a:not(.nav-cta){color:var(--ink) !important}
-  header:not(.on-hero) .navlinks a.active{color:var(--teal-600) !important}
-}
-
-/* ===== Mobile menu button ===== */
-.menu-toggle{background:var(--teal-100) !important;color:var(--navy-900) !important;border:1px solid var(--line) !important}
-header.on-hero .menu-toggle{background:rgba(255,255,255,.12) !important;color:#fff !important;border-color:rgba(255,255,255,.35) !important}
-
-/* ===== Scroll progress bar ===== */
-#progress{background:linear-gradient(90deg,var(--teal-500),var(--amber)) !important}
-
-/* ===== Section accents ===== */
-.kicker{color:var(--teal-600) !important}
-.section-title,.about-copy h2,.contact-info h2{color:var(--navy-900) !important}
-.check-list b{color:var(--teal-600) !important}
-.step-num{color:var(--teal-600) !important}
-.trust-icon{background:var(--teal-100) !important;color:var(--teal-600) !important}
-
-/* ===== Students photo ===== */
-.placements{background:var(--surface) !important}
-.pf-frame{border-color:var(--teal-600) !important;box-shadow:0 0 0 4px var(--amber),0 28px 60px rgba(10,37,64,.25) !important}
-.pf-frame:before{border-color:var(--teal-600) !important}
-.pf-photo:after{background:linear-gradient(0deg,rgba(6,26,48,.88) 0%,rgba(6,26,48,0) 45%) !important}
-.pf-cap strong{background:var(--amber) !important;color:var(--amber-ink) !important}
-@media(max-width:560px){
-  .pf-frame{box-shadow:0 0 0 3px var(--amber),0 18px 40px rgba(10,37,64,.22) !important}
-}
-
-/* ===== Reviews ===== */
-.reviews{background:var(--surface) !important}
-.reviews .rating-summary{box-shadow:0 8px 24px rgba(10,37,64,.08) !important}
-.reviews .rating-summary strong{color:var(--navy-900) !important}
-.reviews .stars{color:var(--amber) !important}
-.reviews .review-card{border-color:var(--line) !important;box-shadow:0 12px 30px rgba(10,37,64,.08) !important}
-.reviews .review-card:hover{box-shadow:0 18px 40px rgba(10,37,64,.14) !important}
-.reviews .review-card blockquote{color:#37506a !important}
-.reviews .review-person{border-top-color:#e6f1ef !important}
-.reviews .review-avatar{background:linear-gradient(135deg,var(--teal-600),var(--navy-700)) !important}
-.reviews .review-person strong{color:var(--navy-900) !important}
-.reviews .review-person small{color:var(--ink-soft) !important}
-
-/* ===== Closing call-to-action panel ===== */
-.cta-panel{
-  background:
-    radial-gradient(600px 300px at 92% 0%, rgba(245,165,36,.28), transparent 60%),
-    linear-gradient(135deg,var(--navy-950) 0%,var(--navy-900) 50%,var(--teal-600) 160%) !important;
-}
-
-/* ===== Footer ===== */
-footer{background:var(--navy-950) !important;color:rgba(255,255,255,.8) !important}
-
-/* ===== Floating buttons ===== */
-.to-top{background:var(--navy-900) !important;color:#fff !important}
-
-/* ===== Illustrations ===== */
-.il-float{animation:ilFloat 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-.il-float.d2{animation-delay:-2s}
-@keyframes ilFloat{50%{transform:translateY(-8px)}}
-@media(prefers-reduced-motion:reduce){.il-float{animation:none}}
-
-.about-visual{background:transparent !important;box-shadow:none !important;min-height:0 !important}
-.illus-about svg{width:100%;max-width:460px;height:auto;display:block;margin:0 auto}
-
-.step-ico{width:76px;height:76px;margin-bottom:14px}
-.step-ico svg{width:100%;height:100%;display:block}
-
-.contact-illus{margin:6px 0 22px}
-.contact-illus svg{width:100%;max-width:300px;height:auto;display:block}
-
-.cta-panel{position:relative;overflow:hidden}
-.cta-panel>*{position:relative;z-index:1}
-.cta-plane{position:absolute !important;z-index:0 !important;right:270px;top:6px;width:130px;opacity:.9;pointer-events:none}
-@media(max-width:850px){.cta-plane{display:none}}
-
-/* ===== Course cards loaded from the admin panel (Firestore) ===== */
-.cc .art{position:relative;overflow:hidden}
-.cc .art .cc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.cc .art .tag{z-index:2}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Genuine Edu-Solutions helps students explore admissions and course opportunities in Kerala and across India.">
+<title>Genuine Edu-Solutions | Your Education, Your Future</title>
+<link rel="icon" type="image/jpeg" href="assets/icon.jpg">
+<link rel="apple-touch-icon" href="assets/icon.jpg">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="tracker.js"></script>
 </head>
 <body>
-  <div id="progress"></div>
-  <div class="topbar">
-    <div class="container">
-      <span class="tb-a">Genuine Edu-Solutions <span style="opacity:.55">•</span> Kallara, Kerala</span>
-      <span class="tb-b">Admission guidance for courses across Kerala & India</span>
-      <span class="live"><i class="pulse"></i><b>Open now</b> <span class="sep">•</span> <span id="clock">--</span></span>
-    </div>
-  </div>
-
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="Genuine Edu-Solutions home">
-        <span class="brand-mark"><img src="assets/icon.jpg" alt="" width="74" height="74"></span>
-        <span>Genuine <small>Edu-Solutions</small></span>
-      </a>
-      <nav class="navlinks" id="navlinks">
-        <a href="#home">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#process">How It Works</a><a href="#gallery">Gallery</a><a href="#placements">Students</a><a href="#success-stories">Success Stories</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
-        <a class="btn btn-primary nav-cta" href="#contact">Speak to an Advisor <span>↗</span></a>
-      </nav>
-      <a class="btn btn-primary" href="#contact">Speak to an Advisor <span>↗</span></a>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-controls="navlinks" aria-expanded="false">☰</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow"><i></i><span class="eb-greet"><span id="greet">Welcome</span> <span class="wave">👋</span></span><span class="eb-dot">·</span><span class="eb-tail">Your trusted education partner</span></div>
-          <h1>Build your future with the <span id="rot" class="rot">right education.</span></h1>
-          <p>Explore course opportunities and get guidance for admissions to colleges in Kerala and across India. Your next step starts with the right information.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Get Admission Guidance <span>→</span></a>
-            <a class="btn btn-light" href="https://wa.me/918921296288?text=Hello%20Genuine%20Edu-Solutions%2C%20I%20would%20like%20to%20know%20about%20admissions." target="_blank" rel="noopener">Chat on WhatsApp</a>
-          </div>
-          <div class="hero-note">Personal guidance • Course information • Admission support</div>
-        </div>
-        <div class="students" aria-hidden="true">
-          <div class="stu" style="--d:0s">
-            <div class="bubble">Hi! 👋</div>
-            <svg viewBox="0 0 124 150" role="img" aria-label="Waving student">
-              <g class="bob">
-                <ellipse cx="62" cy="146" rx="34" ry="4" fill="rgba(0,0,0,.18)"/>
-                <path d="M26 144c0-30 14-48 36-48s36 18 36 48z" fill="#ffc83d"/>
-                <rect x="55" y="82" width="14" height="16" rx="6" fill="#f2c9a0"/>
-                <circle cx="62" cy="58" r="26" fill="#f2c9a0"/>
-                <path d="M36 52c0-20 12-30 26-30s26 10 26 30c-6-10-14-14-26-14s-20 4-26 14z" fill="#2b1d17"/>
-                <g class="eyes"><circle cx="53" cy="60" r="3" fill="#14233f"/><circle cx="71" cy="60" r="3" fill="#14233f"/></g>
-                <path d="M54 70q8 8 16 0" stroke="#14233f" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-                <circle cx="46" cy="68" r="4" fill="#ff8a8a" opacity=".35"/><circle cx="78" cy="68" r="4" fill="#ff8a8a" opacity=".35"/>
-                <path d="M34 104c-4 8-6 16-6 26" stroke="#ffc83d" stroke-width="13" stroke-linecap="round" fill="none"/>
-                <g class="arm"><path d="M90 106L104 66" stroke="#ffc83d" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="105" cy="60" r="9" fill="#f2c9a0"/></g>
-              </g>
-            </svg>
-          </div>
-          <div class="stu" style="--d:0.5s">
-            <div class="bubble">നമസ്കാരം!</div>
-            <svg viewBox="0 0 124 150" role="img" aria-label="Waving student">
-              <g class="bob">
-                <ellipse cx="62" cy="146" rx="34" ry="4" fill="rgba(0,0,0,.18)"/>
-                <path d="M26 144c0-30 14-48 36-48s36 18 36 48z" fill="#ff7a1a"/>
-                <rect x="55" y="82" width="14" height="16" rx="6" fill="#c68a5c"/>
-                <circle cx="62" cy="58" r="26" fill="#c68a5c"/>
-                <path d="M36 52c0-20 12-30 26-30s26 10 26 30c-6-10-14-14-26-14s-20 4-26 14z" fill="#1b1209"/>
-                <g class="eyes"><circle cx="53" cy="60" r="3" fill="#14233f"/><circle cx="71" cy="60" r="3" fill="#14233f"/></g>
-                <path d="M54 70q8 8 16 0" stroke="#14233f" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-                <circle cx="46" cy="68" r="4" fill="#ff8a8a" opacity=".35"/><circle cx="78" cy="68" r="4" fill="#ff8a8a" opacity=".35"/>
-                <path d="M30 36l32-14 32 14-32 14z" fill="#0b2a5b"/><rect x="48" y="40" width="28" height="9" rx="3" fill="#0b2a5b"/><path d="M94 36v16" stroke="#ffc83d" stroke-width="3"/><circle cx="94" cy="54" r="3.5" fill="#ffc83d"/>
-                <path d="M34 104c-4 8-6 16-6 26" stroke="#ff7a1a" stroke-width="13" stroke-linecap="round" fill="none"/>
-                <g class="arm"><path d="M90 106L104 66" stroke="#ff7a1a" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="105" cy="60" r="9" fill="#c68a5c"/></g>
-              </g>
-            </svg>
-          </div>
-          <div class="stu" style="--d:1s">
-            <div class="bubble">Hello! 👋</div>
-            <svg viewBox="0 0 124 150" role="img" aria-label="Waving student">
-              <g class="bob">
-                <ellipse cx="62" cy="146" rx="34" ry="4" fill="rgba(0,0,0,.18)"/>
-                <path d="M26 144c0-30 14-48 36-48s36 18 36 48z" fill="#4f9bff"/>
-                <rect x="55" y="82" width="14" height="16" rx="6" fill="#e8b98d"/>
-                <circle cx="62" cy="58" r="26" fill="#e8b98d"/>
-                <path d="M36 52c0-20 12-30 26-30s26 10 26 30c-6-10-14-14-26-14s-20 4-26 14z" fill="#3a2418"/><path d="M34 50c-4 18 0 32 6 40M90 50c4 18 0 32-6 40" stroke="#3a2418" stroke-width="9" fill="none" stroke-linecap="round"/>
-                <g class="eyes"><circle cx="53" cy="60" r="3" fill="#14233f"/><circle cx="71" cy="60" r="3" fill="#14233f"/></g>
-                <path d="M54 70q8 8 16 0" stroke="#14233f" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-                <circle cx="46" cy="68" r="4" fill="#ff8a8a" opacity=".35"/><circle cx="78" cy="68" r="4" fill="#ff8a8a" opacity=".35"/>
-                <path d="M34 104c-4 8-6 16-6 26" stroke="#4f9bff" stroke-width="13" stroke-linecap="round" fill="none"/>
-                <g class="arm"><path d="M90 106L104 66" stroke="#4f9bff" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="105" cy="60" r="9" fill="#e8b98d"/></g>
-              </g>
-            </svg>
-          </div>
-        </div>
-        <aside class="hero-card">
-          <div class="cap">Find your direction</div>
-          <h2>Explore pathways across popular study fields.</h2>
-          <div class="course-pills">
-            <span>BSc Nursing</span><span>GNM</span><span>BBA</span><span>BCA</span><span>BOT</span><span>BPT</span><span>UG & PG</span><span>And more</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <div class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-item"><div class="trust-icon">◎</div><div><strong>Student-focused guidance</strong><small>Understand your options clearly</small></div></div>
-        <div class="trust-item"><div class="trust-icon">⌖</div><div><strong>Kerala & across India</strong><small>Explore opportunities in different locations</small></div></div>
-        <div class="trust-item"><div class="trust-icon">✓</div><div><strong>Support through the process</strong><small>Get help with your admission enquiries</small></div></div>
-      </div>
-    </div>
-
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-visual">
-<div class="illus-about">
-  <svg viewBox="0 0 420 360" role="img" aria-label="Books, graduation cap and admission checklist">
-    <path d="M70 70C120 10 250 0 330 40c70 36 90 120 60 190-30 70-130 110-220 90C80 300 20 240 25 160c3-40 20-68 45-90z" fill="#d9f3ef"/>
-    <circle cx="372" cy="50" r="10" fill="#f5a524" opacity=".85" class="il-float"/>
-    <circle cx="48" cy="276" r="7" fill="#14b8a6" opacity=".7" class="il-float d2"/>
-    <ellipse cx="210" cy="322" rx="125" ry="9" fill="#0a2540" opacity=".12"/>
-    <rect x="110" y="272" width="200" height="40" rx="8" fill="#0a2540"/>
-    <rect x="126" y="284" width="168" height="6" rx="3" fill="#14b8a6"/>
-    <rect x="128" y="232" width="172" height="40" rx="8" fill="#14b8a6"/>
-    <rect x="144" y="244" width="140" height="6" rx="3" fill="#fff" opacity=".6"/>
-    <rect x="120" y="194" width="180" height="38" rx="8" fill="#f5a524"/>
-    <rect x="136" y="206" width="130" height="6" rx="3" fill="#fff" opacity=".7"/>
-    <g class="il-float">
-      <path d="M210 96l-92 38 92 38 92-38z" fill="#0a2540"/>
-      <path d="M160 154v28c14 12 34 18 50 18s36-6 50-18v-28l-50 20z" fill="#12426b"/>
-      <path d="M302 134v46" stroke="#f5a524" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="302" cy="186" r="8" fill="#f5a524"/>
-    </g>
-    <g class="il-float d2" transform="translate(12 58)">
-      <rect width="104" height="92" rx="14" fill="#fff" stroke="#dcebe8" stroke-width="2"/>
-      <circle cx="22" cy="26" r="9" fill="#14b8a6"/><path d="M17 26l4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="40" y="22" width="48" height="8" rx="4" fill="#cfe3e0"/>
-      <circle cx="22" cy="52" r="9" fill="#14b8a6"/><path d="M17 52l4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <rect x="40" y="48" width="38" height="8" rx="4" fill="#cfe3e0"/>
-      <circle cx="22" cy="78" r="9" fill="#f5a524"/>
-      <rect x="40" y="74" width="46" height="8" rx="4" fill="#cfe3e0"/>
-    </g>
-    <g class="il-float" transform="translate(332 82)">
-      <path d="M26 0C12 0 2 10 2 24c0 18 24 40 24 40s24-22 24-40C50 10 40 0 26 0z" fill="#f5a524"/>
-      <circle cx="26" cy="24" r="9" fill="#fff"/>
-    </g>
-  </svg>
-</div>
-        </div>
-        <div class="about-copy">
-          <div class="kicker">About us</div>
-          <h2>A clearer path from your ambition to admission.</h2>
-          <p>Genuine Edu-Solutions is an educational consultancy based in Kallara, Kerala. We help students explore higher-education options and understand the admission process for a range of courses.</p>
-          <p>Whether you are considering a healthcare, management or technology pathway, speak with our team to learn more about available options and the next steps.</p>
-          <ul class="check-list">
-            <li><b>✓</b> Information on a range of academic and professional courses</li>
-            <li><b>✓</b> Guidance for colleges in Kerala and other parts of India</li>
-            <li><b>✓</b> A friendly point of contact for your admission questions</li>
-          </ul>
-          <a class="btn btn-primary" href="#contact">Talk to our team <span>→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="courses" id="courses">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">Explore your options</div>
-          <h2 class="section-title">Courses we can guide you on</h2>
-          <p>Discover study pathways in healthcare, business, technology and other fields. Contact us for course-specific details and current admission information.</p>
-        </div>
-        <div class="chips" role="tablist" aria-label="Filter courses">
-          <button class="chip-f active" data-f="all">All courses</button>
-          <button class="chip-f" data-f="health">🩺 Healthcare</button>
-          <button class="chip-f" data-f="biz">📈 Business</button>
-          <button class="chip-f" data-f="tech">💻 Technology</button>
-        </div>
-        <!-- Cards below are the built-in fallback. They are replaced by courses from the admin panel (Firestore) when any exist. -->
-        <div class="cc-grid" id="ccGrid">
-          <article class="cc" data-cat="health" style="--a:#5b45e0;--b:#8a6cf5">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <circle cx="130" cy="72" r="46" fill="#fff" opacity=".95"/>
- <rect x="119" y="46" width="22" height="52" rx="6" fill="#e0562a"/><rect x="104" y="61" width="52" height="22" rx="6" fill="#e0562a"/>
- <path class="ecg" d="M10 124h58l10-22 14 40 12-30 8 12h148" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
- <g class="float" fill="#fff" opacity=".7"><rect x="30" y="26" width="5" height="16" rx="2"/><rect x="24.5" y="31.5" width="16" height="5" rx="2"/><rect x="214" y="40" width="5" height="16" rx="2"/><rect x="208.5" y="45.5" width="16" height="5" rx="2"/></g></svg><span class="tag">Healthcare</span></div>
-            <div class="cc-body"><h3>BSc Nursing</h3><p>Explore undergraduate nursing education and admission options.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="BSc Nursing">Enquire about this course →</a></div></div>
-          </article>
-          <article class="cc" data-cat="health" style="--a:#c2486f;--b:#e0562a">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <path class="beat" d="M130 112C70 74 80 30 108 30c13 0 22 8 22 8s9-8 22-8c28 0 38 44-22 82z" fill="#fff" opacity=".96"/>
- <path d="M122 62h16M130 54v16" stroke="#e0562a" stroke-width="7" stroke-linecap="round"/>
- <path d="M28 116c30-18 52-8 78 6M232 116c-30-18-52-8-78 6" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".55"/>
- <g class="float" fill="#fff" opacity=".75"><circle cx="40" cy="38" r="5"/><circle cx="222" cy="30" r="4"/><circle cx="206" cy="78" r="3"/></g></svg><span class="tag">Healthcare</span></div>
-            <div class="cc-body"><h3>GNM</h3><p>Learn about General Nursing and Midwifery study pathways.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="GNM">Enquire about this course →</a></div></div>
-          </article>
-          <article class="cc" data-cat="health" style="--a:#16a36a;--b:#2a8ee0">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <circle cx="130" cy="75" r="52" fill="#fff" opacity=".18"/>
- <circle cx="130" cy="42" r="15" fill="#fff"/>
- <path d="M104 112c0-26 10-42 26-42s26 16 26 42z" fill="#fff"/>
- <g class="lift"><rect x="60" y="38" width="8" height="30" rx="3" fill="#ffb84d"/><rect x="92" y="38" width="8" height="30" rx="3" fill="#ffb84d"/><rect x="68" y="50" width="24" height="6" rx="3" fill="#fff"/><rect x="52" y="44" width="8" height="18" rx="3" fill="#fff"/><rect x="100" y="44" width="8" height="18" rx="3" fill="#fff"/></g>
- <path d="M158 80c22 0 36 14 44 34" fill="none" stroke="#ffb84d" stroke-width="7" stroke-linecap="round"/>
- <path d="M24 128h212" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".5"/></svg><span class="tag">Healthcare</span></div>
-            <div class="cc-body"><h3>BOT &amp; BPT</h3><p>Explore opportunities in occupational and physiotherapy education.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="BOT">Enquire BOT →</a><a class="cc-link" href="#contact" data-course="BPT">Enquire BPT →</a></div></div>
-          </article>
-          <article class="cc" data-cat="biz" style="--a:#e0562a;--b:#ffb84d">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <rect x="40" y="22" width="180" height="104" rx="14" fill="#fff" opacity=".96"/>
- <g><rect class="gb b1" x="68" y="76" width="22" height="38" rx="5" fill="#8a6cf5"/><rect class="gb b2" x="104" y="58" width="22" height="56" rx="5" fill="#5b45e0"/><rect class="gb b3" x="140" y="44" width="22" height="70" rx="5" fill="#e0562a"/><rect class="gb b4" x="176" y="34" width="22" height="80" rx="5" fill="#ffb84d"/></g>
- <path d="M62 66l36-16 30 4 56-24" fill="none" stroke="#1b1a4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" opacity=".55"/>
- <circle cx="224" cy="30" r="5" fill="#fff" class="float"/></svg><span class="tag">Business</span></div>
-            <div class="cc-body"><h3>BBA</h3><p>Find out about business administration study options.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="BBA">Enquire about this course →</a></div></div>
-          </article>
-          <article class="cc" data-cat="tech" style="--a:#2a2870;--b:#5b45e0">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <rect x="62" y="24" width="136" height="88" rx="10" fill="#1b1a4e"/>
- <rect x="68" y="30" width="124" height="76" rx="6" fill="#2a2870"/>
- <g class="code" stroke-linecap="round" stroke-width="5"><path d="M80 48h34" stroke="#ffb84d"/><path d="M80 62h60" stroke="#fff"/><path d="M92 76h44" stroke="#8a6cf5"/><path d="M80 90h28" stroke="#e0562a"/></g>
- <path d="M44 118h172l-12 14H56z" fill="#fff" opacity=".9"/>
- <text class="float" x="24" y="52" font-family="monospace" font-size="22" font-weight="700" fill="#fff" opacity=".8">&lt;/&gt;</text>
- <text class="float" x="200" y="78" font-family="monospace" font-size="20" font-weight="700" fill="#fff" opacity=".7">{ }</text></svg><span class="tag">Technology</span></div>
-            <div class="cc-body"><h3>BCA</h3><p>Explore undergraduate computer applications programmes.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="BCA">Enquire about this course →</a></div></div>
-          </article>
-          <article class="cc" data-cat="more" style="--a:#1b1a4e;--b:#c2486f">
-            <div class="art"><svg viewBox="0 0 260 150" aria-hidden="true">
- <rect x="62" y="104" width="136" height="14" rx="4" fill="#fff" opacity=".9"/><rect x="72" y="90" width="116" height="14" rx="4" fill="#ffb84d"/><rect x="82" y="76" width="96" height="14" rx="4" fill="#fff" opacity=".8"/>
- <g class="cap"><path d="M130 22l-70 28 70 28 70-28z" fill="#1b1a4e"/><path d="M92 62v18c10 8 26 12 38 12s28-4 38-12V62l-38 15z" fill="#2a2870"/><path d="M198 50v30" stroke="#ffb84d" stroke-width="4" stroke-linecap="round"/><circle cx="198" cy="84" r="6" fill="#ffb84d"/></g>
- <g class="float" fill="#fff" opacity=".8"><circle cx="34" cy="40" r="4"/><circle cx="228" cy="26" r="5"/><circle cx="40" cy="96" r="3"/></g></svg><span class="tag">More options</span></div>
-            <div class="cc-body"><h3>UG &amp; PG Programmes</h3><p>Ask us about other undergraduate and postgraduate courses.</p><div class="cc-links"><a class="cc-link" href="#contact" data-course="Other UG / PG course">Enquire about this course →</a></div></div>
-          </article>
-        </div>
-        <div class="swipe-hint" aria-hidden="true">Swipe to see more <span>→</span></div>
-        <div class="help-banner">
-          <div class="hb-ico">🧭</div>
-          <div class="hb-text"><strong>Not sure which course fits you?</strong><span>Share your qualification and interests and our team will help you explore the options.</span></div>
-          <a class="btn btn-primary" href="#contact" data-course="Not sure yet">Talk to an advisor →</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">Simple steps</div>
-          <h2 class="section-title">How we can help you</h2>
-          <p>Start a conversation with us and get clarity on what to do next.</p>
-        </div>
-        <div class="process-grid">
-          <div class="step"><div class="step-num">STEP 01</div><h3>Tell us your goal</h3><p>Share the course you are interested in, your qualification and preferred study location.</p></div>
-          <div class="step"><div class="step-num">STEP 02</div><h3>Explore your options</h3><p>Discuss relevant course and college options with our team.</p></div>
-          <div class="step"><div class="step-num">STEP 03</div><h3>Understand the next steps</h3><p>Get information about the admission process and the details you may need to prepare.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">A glimpse inside</div>
-          <h2 class="section-title">Learning journeys begin with a conversation</h2>
-          <p>A glimpse of the guidance and support offered by Genuine Edu-Solutions.</p>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85" alt="Students on a university campus" loading="lazy" referrerpolicy="no-referrer"><span>Student counselling</span></div>
-          <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85" alt="Students studying together" loading="lazy" referrerpolicy="no-referrer"><span>Admission guidance</span></div>
-          <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85" alt="Students working together" loading="lazy" referrerpolicy="no-referrer"><span>Student support</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- <section class="placements" id="placements">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">Our students</div>
-          <h2 class="section-title">Students who made it</h2>
-          <p>Proud moments with the students we have guided on their education journey.</p>
-        </div>
-        <figure class="pf-frame">
-          <div class="pf-photo">
-            <img src="assets/batch1.jpg" alt="Genuine Edu-Solutions students, Batch 1" loading="lazy">
-            <figcaption class="pf-cap">
-              <strong>Batch 1</strong>
-              <span>Our students with the Genuine Edu-Solutions team</span>
-            </figcaption>
-          </div>
-        </figure>
-      </div>
-    </section> -->
-
-    <section class="story-section" id="success-stories">
-      <div class="container">
-        <div class="section-head">
-          <div class="kicker">Student journeys</div>
-          <h2 class="section-title">Every future starts with a first step</h2>
-          <p>Sample story layouts to show how genuine student experiences can be featured on the website.</p>
-        </div>
-        <div class="story-grid">
-          <article class="story-card">
-            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=85" alt="Students discussing their studies" loading="lazy" referrerpolicy="no-referrer">
-            <div class="story-content"><div class="story-tag">Nursing pathway</div><h3>Anagha Nair</h3><p>Exploring nursing course options, understanding eligibility and preparing for the admission process.</p></div>
-          </article>
-          <article class="story-card">
-            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=85" alt="Student preparing study documents" loading="lazy" referrerpolicy="no-referrer">
-            <div class="story-content"><div class="story-tag">Course selection</div><h3>Adithyan Raj</h3><p>Comparing study pathways and learning what to consider before choosing a programme.</p></div>
-          </article>
-          <article class="story-card">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85" alt="Students at a college campus" loading="lazy" referrerpolicy="no-referrer">
-            <div class="story-content"><div class="story-tag">Admission support</div><h3>Devika Menon</h3><p>Getting familiar with application steps and the documents that may be required for admission.</p></div>
-          </article>
-        </div>
-        <p class="story-disclaimer"><strong>Note:</strong> Student names and profiles are illustrative examples for website layout. Replace them with verified student stories and approved photographs before publishing.</p>
-      </div>
-    </section>
-
-    <section class="reviews" id="reviews" hidden>
+<div id="progress"></div>
+<div class="topbar">
   <div class="container">
-    <div class="section-head">
-      <div class="kicker">Student voices</div>
-      <h2 class="section-title">A little feedback from students</h2>
-      <p>What students say about their guidance experience with us.</p>
-    </div>
-    <div class="rating-summary">
-      <strong id="ratingAvg">5.0</strong>
-      <div>
-        <div class="stars" id="ratingStars" aria-label="5 out of 5 stars">★★★★★</div>
-        <small id="ratingCount"></small>
-      </div>
-    </div>
-    <div class="review-grid" id="reviewGrid"></div>
-    <div class="reviews-more"><button class="btn btn-primary" id="reviewMore" type="button" hidden>View more reviews ↓</button></div>
+    <span class="tb-a">Genuine Edu-Solutions <span style="opacity:.55">•</span> Kallara, Kerala</span>
+    <span class="tb-b">Admission guidance for courses across Kerala &amp; India</span>
+    <span class="live"><i class="pulse"></i><b>Open now</b> <span class="sep">•</span> <span id="clock">--</span></span>
   </div>
-</section>
-    <div class="cta">
-      <div class="container">
-        <div class="cta-panel">
-          <div><h2>Have a course in mind?</h2><p>Speak with Genuine Edu-Solutions and take your next step with confidence.</p></div>
-          <a class="btn btn-light" href="https://wa.me/918921296288?text=Hello%2C%20I%20would%20like%20admission%20guidance." target="_blank" rel="noopener">Message us on WhatsApp ↗</a>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Genuine Edu-Solutions home">
+      <span class="brand-mark"><img src="assets/icon.jpg" alt="" width="74" height="74"></span>
+      <span>Genuine<sup class="registered-mark">®</sup><small>Edu-Solutions</small></span>
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#process">How It Works</a><a href="#gallery">Gallery</a><a href="#stories" hidden>Stories</a><a href="#contact">Contact</a>
+      <a class="btn btn-primary nav-cta" href="#contact">Speak to an Advisor <span>↗</span></a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Speak to an Advisor <span>↗</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-controls="navlinks" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><i></i><span class="eb-greet"><span id="greet">Welcome</span> <span class="wave">👋</span></span><span class="eb-dot">·</span><span class="eb-tail">Your trusted education partner</span></div>
+        <h1>Build your future with the <span id="rot" class="rot">right education.</span></h1>
+        <p>Explore course opportunities and get guidance for admissions to colleges in Kerala and across India. Your next step starts with the right information.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Get Admission Guidance <span>→</span></a>
+          <a class="btn btn-light" href="https://wa.me/918921296288?text=Hello%20Genuine%20Edu-Solutions%2C%20I%20would%20like%20to%20know%20about%20admissions." target="_blank" rel="noopener">Chat on WhatsApp</a>
         </div>
+        <div class="hero-note">Personal guidance • Course information • Admission support</div>
+      </div>
+      <div class="students" id="students" aria-hidden="true"></div>
+      <aside class="hero-card">
+        <div class="cap">Find your direction</div>
+        <h2>Explore pathways across popular study fields.</h2>
+        <div class="course-pills"><span>BSc Nursing</span><span>GNM</span><span>BBA</span><span>BCA</span><span>BOT</span><span>BPT</span><span>UG &amp; PG</span><span>And more</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="container trust-grid">
+      <div class="trust-item"><div class="trust-icon">◎</div><div><strong>Student-focused guidance</strong><small>Understand your options clearly</small></div></div>
+      <div class="trust-item"><div class="trust-icon">⌖</div><div><strong>Kerala &amp; across India</strong><small>Explore opportunities in different locations</small></div></div>
+      <div class="trust-item"><div class="trust-icon">✓</div><div><strong>Support through the process</strong><small>Get help with your admission enquiries</small></div></div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-visual"><div class="illus-about">
+        <svg viewBox="0 0 420 360" role="img" aria-label="Books, graduation cap and admission checklist">
+          <path d="M70 70C120 10 250 0 330 40c70 36 90 120 60 190-30 70-130 110-220 90C80 300 20 240 25 160c3-40 20-68 45-90z" fill="#e3f7f2"/>
+          <circle cx="372" cy="50" r="10" fill="#f5a623" opacity=".85" class="il-float"/>
+          <circle cx="48" cy="276" r="7" fill="#16b496" opacity=".7" class="il-float d2"/>
+          <ellipse cx="210" cy="322" rx="125" ry="9" fill="#0a5f52" opacity=".12"/>
+          <rect x="110" y="272" width="200" height="40" rx="8" fill="#0a5f52"/><rect x="126" y="284" width="168" height="6" rx="3" fill="#16b496"/>
+          <rect x="128" y="232" width="172" height="40" rx="8" fill="#16b496"/><rect x="144" y="244" width="140" height="6" rx="3" fill="#fff" opacity=".6"/>
+          <rect x="120" y="194" width="180" height="38" rx="8" fill="#f5a623"/><rect x="136" y="206" width="130" height="6" rx="3" fill="#fff" opacity=".7"/>
+          <g class="il-float"><path d="M210 96l-92 38 92 38 92-38z" fill="#0a5f52"/><path d="M160 154v28c14 12 34 18 50 18s36-6 50-18v-28l-50 20z" fill="#0e8f78"/><path d="M302 134v46" stroke="#f5a623" stroke-width="5" stroke-linecap="round"/><circle cx="302" cy="186" r="8" fill="#f5a623"/></g>
+          <g class="il-float d2" transform="translate(12 58)"><rect width="104" height="92" rx="14" fill="#fff" stroke="#d8ece7" stroke-width="2"/>
+            <circle cx="22" cy="26" r="9" fill="#16b496"/><path d="M17 26l4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="40" y="22" width="48" height="8" rx="4" fill="#cfe3e0"/>
+            <circle cx="22" cy="52" r="9" fill="#16b496"/><path d="M17 52l4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="40" y="48" width="38" height="8" rx="4" fill="#cfe3e0"/>
+            <circle cx="22" cy="78" r="9" fill="#f5a623"/><rect x="40" y="74" width="46" height="8" rx="4" fill="#cfe3e0"/></g>
+          <g class="il-float" transform="translate(332 82)"><path d="M26 0C12 0 2 10 2 24c0 18 24 40 24 40s24-22 24-40C50 10 40 0 26 0z" fill="#f5a623"/><circle cx="26" cy="24" r="9" fill="#fff"/></g>
+        </svg></div></div>
+      <div class="about-copy">
+        <div class="kicker">About us</div>
+        <h2>A clearer path from your ambition to admission.</h2>
+        <p>Genuine Edu-Solutions is an educational consultancy based in Kallara, Kerala. We help students explore higher-education options and understand the admission process for a range of courses.</p>
+        <p>Whether you are considering a healthcare, management or technology pathway, speak with our team to learn more about available options and the next steps.</p>
+        <ul class="check-list">
+          <li><b>✓</b> Information on a range of academic and professional courses</li>
+          <li><b>✓</b> Guidance for colleges in Kerala and other parts of India</li>
+          <li><b>✓</b> A friendly point of contact for your admission questions</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">Talk to our team <span>→</span></a>
       </div>
     </div>
+  </section>
 
-    <section class="contact" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-info">
-          <div class="kicker">Get in touch</div>
-          <h2>Let’s talk about your future.</h2>
-          <p>Contact us for course information, admission enquiries or to discuss the options available to you.</p>
-          <div class="contact-row"><div class="ico">☎</div><div><strong>Phone / WhatsApp</strong><a href="tel:+918921296288">+91 89212 96288</a></div></div>
-          <div class="contact-row"><div class="ico">✉</div><div><strong>Email</strong><a href="mailto:genuineedusolutions@gmail.com">genuineedusolutions@gmail.com</a></div></div>
-          <div class="contact-row"><div class="ico">⌖</div><div><strong>Visit us</strong><a href="https://www.google.com/maps/search/?api=1&query=First+Floor%2C+S+S+Tower%2C+Near+Bus+Stand%2C+Kallara" target="_blank" rel="noopener">First Floor, S S Tower, Near Bus Stand, Kallara</a></div></div>
-          <div class="contact-row"><div class="ico">◷</div><div><strong>Business hours</strong><span>Open 24 hours (as listed on the business profile)</span></div></div>
-        </div>
-        <form class="form-card" onsubmit="sendEnquiry(event)">
-          <h3 id="formGreet">Send an admission enquiry</h3>
-          <p>Fill in your details. Your enquiry will open in WhatsApp.</p>
-          <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="Enter your name" autocomplete="name" autocapitalize="words" required></div>
-          <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Your contact number" required></div>
-
-          <div class="field"><label for="course">Course of interest</label><select id="course" name="course" required><option value="">Select a course</option><option>BSc Nursing</option><option>GNM</option><option>BOT</option><option>BPT</option><option>BBA</option><option>BCA</option><option>Other UG / PG course</option><option>Not sure yet</option></select></div>
-
-          <div class="field" id="otherCourseField" hidden>
-            <label for="otherCourse">Type your course</label>
-            <input id="otherCourse" name="otherCourse" placeholder="e.g. B.Com, MBA, BSc Agriculture" autocapitalize="words">
-          </div>
-
-          <div class="field">
-            <label for="state">Preferred state to study</label>
-            <select id="state" name="state" required>
-              <option value="">Select a state</option>
-              <option>Kerala</option>
-              <option>Karnataka</option>
-              <option>Tamil Nadu</option>
-              <option>Andhra Pradesh</option>
-              <option>Telangana</option>
-              <option>Maharashtra</option>
-              <option>Other state</option>
-              <option>No preference</option>
-            </select>
-          </div>
-
-          <div class="field" id="otherStateField" hidden>
-            <label for="otherState">Type your preferred state</label>
-            <input id="otherState" name="otherState" placeholder="e.g. Goa, Punjab, Delhi" autocapitalize="words">
-          </div>
-
-          <div class="field"><label for="location">Your current location</label><input id="location" name="location" placeholder="City / town and district, e.g. Kallara, Kottayam" autocomplete="address-level2" autocapitalize="words" required></div>
-
-          <div class="field">
-            <label for="source">How did you hear about us?</label>
-            <select id="source" name="source" required>
-              <option value="">Select one</option>
-              <option>Social media</option>
-              <option>Agent</option>
-              <option>Direct (walked in / called)</option>
-              <option>Friend or relative</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="field" id="sourceDetailField" hidden>
-            <label for="sourceDetail" id="sourceDetailLabel">Tell us more (optional)</label>
-            <input id="sourceDetail" name="sourceDetail" placeholder="" autocapitalize="words">
-          </div>
-
-          <div class="field"><label for="message">Your question (optional)</label><textarea id="message" name="message" placeholder="Tell us what you would like to know..."></textarea></div>
-          <button class="btn btn-primary" type="submit">Send enquiry on WhatsApp ↗</button>
-        </form>
+  <section class="courses" id="courses">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Explore your options</div>
+        <h2 class="section-title">Courses we can guide you on</h2>
+        <p>Discover study pathways in healthcare, business, technology and other fields. Contact us for course-specific details and current admission information.</p>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div><strong>Genuine Edu-Solutions</strong><br><small>Your trusted partner in education.</small></div>
-      <small>© <span id="year"></span> Genuine Edu-Solutions. All rights reserved. · We use basic analytics to improve this website.</small>
+      <div class="chips" role="tablist" aria-label="Filter courses">
+        <button class="chip-f active" data-f="all">All courses</button>
+        <button class="chip-f" data-f="health">🩺 Healthcare</button>
+        <button class="chip-f" data-f="biz">📈 Business</button>
+        <button class="chip-f" data-f="tech">💻 Technology</button>
+      </div>
+      <!-- Built-in courses are drawn by the script below and replaced by admin-panel courses (Firestore) when any exist. -->
+      <div class="cc-grid" id="ccGrid"></div>
+      <div class="swipe-hint" aria-hidden="true">Swipe to see more <span>→</span></div>
+      <div class="help-banner">
+        <div class="hb-ico">🧭</div>
+        <div class="hb-text"><strong>Not sure which course fits you?</strong><span>Share your qualification and interests and our team will help you explore the options.</span></div>
+        <a class="btn btn-primary" href="#contact" data-course="Not sure yet">Talk to an advisor →</a>
+      </div>
     </div>
-  </footer>
-  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
-  <a class="wa-float" href="https://wa.me/918921296288" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">✆</a>
+  </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Simple steps</div>
+        <h2 class="section-title">How we can help you</h2>
+        <p>Start a conversation with us and get clarity on what to do next.</p>
+      </div>
+      <div class="process-grid">
+        <div class="step"><div class="step-num">STEP 01</div><h3>Tell us your goal</h3><p>Share the course you are interested in, your qualification and preferred study location.</p></div>
+        <div class="step"><div class="step-num">STEP 02</div><h3>Explore your options</h3><p>Discuss relevant course and college options with our team.</p></div>
+        <div class="step"><div class="step-num">STEP 03</div><h3>Understand the next steps</h3><p>Get information about the admission process and the details you may need to prepare.</p></div>
+      </div>
+    </div>
+  </section>
 
-    // Header: blue while over the hero, white once the hero has scrolled past
-    (function(){
-      const header = document.querySelector('header');
-      const hero = document.getElementById('home');
-      if (!header || !hero) return;
-      const check = () => {
-        const limit = hero.offsetTop + hero.offsetHeight - header.offsetHeight;
-        header.classList.toggle('on-hero', scrollY < limit);
-      };
-      addEventListener('scroll', check, {passive:true});
-      addEventListener('resize', check);
-      addEventListener('load', check);
-      check();
-    })();
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">A glimpse inside</div>
+        <h2 class="section-title">Learning journeys begin with a conversation</h2>
+        <p>A glimpse of the guidance and support offered by Genuine Edu-Solutions.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85" alt="Students on a university campus" loading="lazy" referrerpolicy="no-referrer"><span>Student counselling</span></div>
+        <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85" alt="Students studying together" loading="lazy" referrerpolicy="no-referrer"><span>Admission guidance</span></div>
+        <div class="gallery-tile"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85" alt="Students working together" loading="lazy" referrerpolicy="no-referrer"><span>Student support</span></div>
+      </div>
+    </div>
+  </section>
 
-    // A lightweight SVG fallback keeps the layout attractive if an image URL fails.
-    const educationFallback = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
-        <defs>
-          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ece9ff"/><stop offset="1" stop-color="#fff0e8"/>
-          </linearGradient>
-        </defs>
-        <rect width="900" height="520" rx="28" fill="url(#bg)"/>
-        <circle cx="450" cy="205" r="112" fill="#ffffff" opacity=".72"/>
-        <path d="M315 190l135-58 135 58-135 58z" fill="#5b45e0"/>
-        <path d="M365 222v75c48 30 122 30 170 0v-75l-85 37z" fill="#e0562a"/>
-        <path d="M570 190v92" stroke="#5b45e0" stroke-width="10" stroke-linecap="round"/>
-        <circle cx="570" cy="292" r="12" fill="#e0562a"/>
-        <text x="450" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#1b1a4e">Genuine Edu-Solutions</text>
-        <text x="450" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#66668a">Your learning journey starts here</text>
-      </svg>
-    `);
+  <!-- Student stories + rating: loaded from the admin panel (Firestore). Hidden until at least one story exists. -->
+  <section class="reviews" id="stories" hidden>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Student stories</div>
+        <h2 class="section-title">Stories from our students</h2>
+        <p>Real experiences from students we have guided on their admission journey.</p>
+      </div>
+      <div class="rating-summary" hidden>
+        <strong id="ratingAvg">5.0</strong>
+        <div><div class="stars" id="ratingStars" aria-label="5 out of 5 stars">★★★★★</div><small id="ratingCount"></small></div>
+      </div>
+      <div class="review-grid" id="reviewGrid"></div>
+      <div class="reviews-more"><button class="btn btn-primary" id="reviewMore" type="button" hidden>View more stories ↓</button></div>
+    </div>
+  </section>
 
-    document.querySelectorAll('.gallery-tile img, .story-card img').forEach((img) => {
-      img.addEventListener('load', () => img.classList.add('image-loaded'), { once: true });
-      img.addEventListener('error', () => {
-        img.onerror = null;
-        img.src = educationFallback;
-        img.classList.remove('image-loaded');
-        img.classList.add('image-fallback');
-      }, { once: true });
-      if (img.complete && img.naturalWidth > 0) img.classList.add('image-loaded');
-    });
+  <div class="cta">
+    <div class="container">
+      <div class="cta-panel">
+        <div><h2>Have a course in mind?</h2><p>Speak with Genuine Edu-Solutions and take your next step with confidence.</p></div>
+        <a class="btn btn-light" href="https://wa.me/918921296288?text=Hello%2C%20I%20would%20like%20admission%20guidance." target="_blank" rel="noopener">Message us on WhatsApp ↗</a>
+      </div>
+    </div>
+  </div>
 
-    // ===== Mobile menu =====
-    (function(){
-      const btn = document.getElementById('menuToggle'), nav = document.getElementById('navlinks');
-      const setOpen = (open) => {
-        nav.classList.toggle('open', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.textContent = open ? '✕' : '☰';
-      };
-      btn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
-      nav.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-      document.addEventListener('click', (e) => { if (!nav.contains(e.target) && e.target !== btn) setOpen(false); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
-      addEventListener('resize', () => { if (innerWidth > 850) setOpen(false); });
-    })();
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <div class="kicker">Get in touch</div>
+        <h2>Let’s talk about your future.</h2>
+        <p>Contact us for course information, admission enquiries or to discuss the options available to you.</p>
+        <div class="contact-row"><div class="ico">☎</div><div><strong>Phone / WhatsApp</strong><a href="tel:+918921296288">+91 89212 96288</a></div></div>
+        <div class="contact-row"><div class="ico">✉</div><div><strong>Email</strong><a href="mailto:genuineedusolutions@gmail.com">genuineedusolutions@gmail.com</a></div></div>
+        <div class="contact-row"><div class="ico">⌖</div><div><strong>Visit us</strong><a href="https://www.google.com/maps/search/?api=1&query=First+Floor%2C+S+S+Tower%2C+Near+Bus+Stand%2C+Kallara" target="_blank" rel="noopener">First Floor, S S Tower, Near Bus Stand, Kallara</a></div></div>
+        <div class="contact-row"><div class="ico">◷</div><div><strong>Business hours</strong><span>Open 24 hours (as listed on the business profile)</span></div></div>
+      </div>
+      <form class="form-card" onsubmit="sendEnquiry(event)">
+        <h3 id="formGreet">Send an admission enquiry</h3>
+        <p>Fill in your details. Your enquiry will open in WhatsApp.</p>
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="Enter your name" autocomplete="name" autocapitalize="words" required></div>
+        <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Your contact number" required></div>
+        <div class="field"><label for="course">Course of interest</label><select id="course" name="course" required><option value="">Select a course</option><option>BSc Nursing</option><option>GNM</option><option>BOT</option><option>BPT</option><option>BBA</option><option>BCA</option><option>Other UG / PG course</option><option>Not sure yet</option></select></div>
+        <div class="field" id="otherCourseField" hidden><label for="otherCourse">Type your course</label><input id="otherCourse" name="otherCourse" placeholder="e.g. B.Com, MBA, BSc Agriculture" autocapitalize="words"></div>
+        <div class="field"><label for="state">Preferred state to study</label>
+          <select id="state" name="state" required><option value="">Select a state</option><option>Kerala</option><option>Karnataka</option><option>Tamil Nadu</option><option>Andhra Pradesh</option><option>Telangana</option><option>Maharashtra</option><option>Other state</option><option>No preference</option></select></div>
+        <div class="field" id="otherStateField" hidden><label for="otherState">Type your preferred state</label><input id="otherState" name="otherState" placeholder="e.g. Goa, Punjab, Delhi" autocapitalize="words"></div>
+        <div class="field"><label for="location">Your current location</label><input id="location" name="location" placeholder="City / town and district, e.g. Kallara, Kottayam" autocomplete="address-level2" autocapitalize="words" required></div>
+        <div class="field"><label for="source">How did you hear about us?</label>
+          <select id="source" name="source" required><option value="">Select one</option><option>Social media</option><option>Agent</option><option>Direct (walked in / called)</option><option>Friend or relative</option><option>Other</option></select></div>
+        <div class="field" id="sourceDetailField" hidden><label for="sourceDetail" id="sourceDetailLabel">Tell us more (optional)</label><input id="sourceDetail" name="sourceDetail" placeholder="" autocapitalize="words"></div>
+        <div class="field"><label for="message">Your question (optional)</label><textarea id="message" name="message" placeholder="Tell us what you would like to know..."></textarea></div>
+        <button class="btn btn-primary" type="submit">Send enquiry on WhatsApp ↗</button>
+      </form>
+    </div>
+  </section>
+</main>
 
-    (function(){
-      const h = new Date().getHours();
-      const greeting = h < 5 ? 'Hello, night owl' : h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : h < 21 ? 'Good evening' : 'Good night';
-      document.getElementById('greet').textContent = greeting;
+<footer>
+  <div class="container footer-inner">
+    <div><strong>Genuine Edu-Solutions</strong><br><small>Your trusted partner in education.</small></div>
+    <small>© <span id="year"></span> Genuine Edu-Solutions. All rights reserved. · We use basic analytics to improve this website.</small>
+  </div>
+</footer>
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<a class="wa-float" href="https://wa.me/918921296288" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">✆</a>
 
-      const clock = document.getElementById('clock');
-      const tick = () => {
-        const d = new Date();
-        const small = innerWidth <= 560;
-        const timeOpts = small ? {hour:'2-digit',minute:'2-digit'} : {hour:'2-digit',minute:'2-digit',second:'2-digit'};
-        clock.textContent = d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}) + ' · ' +
-                            d.toLocaleTimeString('en-IN',timeOpts);
-      };
-      tick(); setInterval(tick, 1000);
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-      const words = ['right education.','right course.','right college.','right guidance.'];
-      const rot = document.getElementById('rot'); let i = 0;
-      setInterval(() => {
-        rot.classList.add('out');
-        setTimeout(() => { i = (i + 1) % words.length; rot.textContent = words[i]; rot.classList.remove('out'); }, 350);
-      }, 2800);
+/* ===== Waving students (hero) ===== */
+(function(){
+  const S=[
+    {d:0,  say:'Hi! 👋',     skin:'#f2c9a0',hair:'#2b1d17',shirt:'#f5a623'},
+    {d:.5, say:'നമസ്കാരം!', skin:'#c68a5c',hair:'#1b1209',shirt:'#16b496',cap:1},
+    {d:1,  say:'Hello! 👋',  skin:'#e8b98d',hair:'#3a2418',shirt:'#0e8f78',long:1}
+  ];
+  document.getElementById('students').innerHTML=S.map(s=>`
+  <div class="stu" style="--d:${s.d}s"><div class="bubble">${s.say}</div>
+  <svg viewBox="0 0 124 150" role="img" aria-label="Waving student"><g class="bob">
+    <ellipse cx="62" cy="146" rx="34" ry="4" fill="rgba(0,0,0,.14)"/>
+    <path d="M26 144c0-30 14-48 36-48s36 18 36 48z" fill="${s.shirt}"/>
+    <rect x="55" y="82" width="14" height="16" rx="6" fill="${s.skin}"/>
+    <circle cx="62" cy="58" r="26" fill="${s.skin}"/>
+    <path d="M36 52c0-20 12-30 26-30s26 10 26 30c-6-10-14-14-26-14s-20 4-26 14z" fill="${s.hair}"/>
+    ${s.long?`<path d="M34 50c-4 18 0 32 6 40M90 50c4 18 0 32-6 40" stroke="${s.hair}" stroke-width="9" fill="none" stroke-linecap="round"/>`:''}
+    <g class="eyes"><circle cx="53" cy="60" r="3" fill="#2b2f33"/><circle cx="71" cy="60" r="3" fill="#2b2f33"/></g>
+    <path d="M54 70q8 8 16 0" stroke="#2b2f33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <circle cx="46" cy="68" r="4" fill="#ff8a8a" opacity=".35"/><circle cx="78" cy="68" r="4" fill="#ff8a8a" opacity=".35"/>
+    ${s.cap?`<path d="M30 36l32-14 32 14-32 14z" fill="#0a5f52"/><rect x="48" y="40" width="28" height="9" rx="3" fill="#0a5f52"/><path d="M94 36v16" stroke="#f5a623" stroke-width="3"/><circle cx="94" cy="54" r="3.5" fill="#f5a623"/>`:''}
+    <path d="M34 104c-4 8-6 16-6 26" stroke="${s.shirt}" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <g class="arm"><path d="M90 106L104 66" stroke="${s.shirt}" stroke-width="13" stroke-linecap="round" fill="none"/><circle cx="105" cy="60" r="9" fill="${s.skin}"/></g>
+  </g></svg></div>`).join('');
+})();
 
-      const progress = document.getElementById('progress'), toTop = document.getElementById('toTop');
-      const links = [...document.querySelectorAll('.navlinks a:not(.nav-cta)')];
-      const secs = links.map(a => document.querySelector(a.getAttribute('href')));
-      let ticking = false;
-      const update = () => {
-        ticking = false;
-        const max = document.documentElement.scrollHeight - innerHeight;
-        progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
-        toTop.classList.toggle('show', scrollY > 600);
-let cur = 0; secs.forEach((el,k) => { if (el && el.offsetParent && el.getBoundingClientRect().top < 140) cur = k; });        links.forEach((a,k) => a.classList.toggle('active', k === cur));
-      };
-      const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-      addEventListener('scroll', onScroll, {passive:true}); update();
-      toTop.addEventListener('click', () => scrollTo({top:0,behavior:'smooth'}));
+/* ===== Header: switches style when the hero is scrolled past ===== */
+(function(){
+  const header=document.querySelector('header'), hero=document.getElementById('home');
+  const check=()=>header.classList.toggle('on-hero', scrollY < hero.offsetTop+hero.offsetHeight-header.offsetHeight);
+  addEventListener('scroll',check,{passive:true}); addEventListener('resize',check); addEventListener('load',check); check();
+})();
 
-      const isPhone = innerWidth <= 560;
-      const targets = document.querySelectorAll('.section-head,.course-card,.step,.gallery-tile,.story-card,.review-card,.about-grid>*,.contact-grid>*,.cta-panel' + (isPhone ? '' : ',.cc'));
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.08});
-        targets.forEach((el,k) => { el.classList.add('reveal'); el.style.transitionDelay = (isPhone ? 0 : (k % 3) * 90) + 'ms'; io.observe(el); });
-      }
+/* ===== Image fallback ===== */
+const educationFallback='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3f7f2"/><stop offset="1" stop-color="#fff3dc"/></linearGradient></defs><rect width="900" height="520" rx="28" fill="url(#bg)"/><circle cx="450" cy="205" r="112" fill="#fff" opacity=".72"/><path d="M315 190l135-58 135 58-135 58z" fill="#0e8f78"/><path d="M365 222v75c48 30 122 30 170 0v-75l-85 37z" fill="#f5a623"/><path d="M570 190v92" stroke="#0e8f78" stroke-width="10" stroke-linecap="round"/><circle cx="570" cy="292" r="12" fill="#f5a623"/><text x="450" y="385" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#0a5f52">Genuine Edu-Solutions</text><text x="450" y="425" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#5b6670">Your learning journey starts here</text></svg>`);
+document.querySelectorAll('.gallery-tile img').forEach(img=>{
+  img.addEventListener('load',()=>img.classList.add('image-loaded'),{once:true});
+  img.addEventListener('error',()=>{img.src=educationFallback;img.classList.remove('image-loaded');img.classList.add('image-fallback');},{once:true});
+  if(img.complete&&img.naturalWidth>0)img.classList.add('image-loaded');
+});
 
-      const nameInput = document.getElementById('name'), fg = document.getElementById('formGreet');
-      nameInput.addEventListener('input', () => {
-        const n = nameInput.value.trim().split(' ')[0];
-        fg.textContent = n ? 'Hi ' + n + ', send your admission enquiry' : 'Send an admission enquiry';
-      });
-    })();
+/* ===== Mobile menu ===== */
+(function(){
+  const btn=document.getElementById('menuToggle'), nav=document.getElementById('navlinks');
+  const setOpen=o=>{nav.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');btn.textContent=o?'✕':'☰';};
+  btn.addEventListener('click',e=>{e.stopPropagation();setOpen(!nav.classList.contains('open'));});
+  nav.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false);});
+  document.addEventListener('click',e=>{if(!nav.contains(e.target)&&e.target!==btn)setOpen(false);});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false);});
+  addEventListener('resize',()=>{if(innerWidth>850)setOpen(false);});
+})();
 
-    // ===== Courses: filter chips + prefill the enquiry form + "other" fields =====
-    (function(){
-      const cards=[...document.querySelectorAll('.cc')], chips=[...document.querySelectorAll('.chip-f')], grid=document.getElementById('ccGrid');
-      chips.forEach(c=>c.addEventListener('click',()=>{
-        chips.forEach(x=>x.classList.toggle('active',x===c));
-        const f=c.dataset.f;
-        document.querySelectorAll('#ccGrid .cc').forEach(card=>card.classList.toggle('hide', f!=='all' && card.dataset.cat!==f));
-        grid.scrollTo({left:0});
-        c.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
-      }));
+/* ===== Greeting, clock, rotating headline, progress, scroll-spy, reveal ===== */
+(function(){
+  const h=new Date().getHours();
+  document.getElementById('greet').textContent = h<5?'Hello, night owl':h<12?'Good morning':h<17?'Good afternoon':h<21?'Good evening':'Good night';
 
-      const course = document.getElementById('course');
-      const state = document.getElementById('state');
-      const otherCourseField = document.getElementById('otherCourseField');
-      const otherStateField = document.getElementById('otherStateField');
+  const clock=document.getElementById('clock');
+  const tick=()=>{const d=new Date(),sm=innerWidth<=560;
+    clock.textContent=d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'})+' · '+
+      d.toLocaleTimeString('en-IN',sm?{hour:'2-digit',minute:'2-digit'}:{hour:'2-digit',minute:'2-digit',second:'2-digit'});};
+  tick(); setInterval(tick,1000);
 
-      const syncOther = () => {
-        const showCourse = course.value === 'Other UG / PG course';
-        const showState = state.value === 'Other state';
-        otherCourseField.hidden = !showCourse;
-        otherStateField.hidden = !showState;
-        document.getElementById('otherCourse').required = showCourse;
-        document.getElementById('otherState').required = showState;
-      };
-      course.addEventListener('change', syncOther);
-      state.addEventListener('change', syncOther);
+  const words=['right education.','right course.','right college.','right guidance.'], rot=document.getElementById('rot'); let i=0;
+  setInterval(()=>{rot.classList.add('out');setTimeout(()=>{i=(i+1)%words.length;rot.textContent=words[i];rot.classList.remove('out');},350);},2800);
 
-      document.querySelectorAll('[data-course]').forEach(a => a.addEventListener('click', () => {
-        course.value = a.dataset.course;
-        syncOther();
-      }));
-    })();
+  const progress=document.getElementById('progress'), toTop=document.getElementById('toTop');
+  const links=[...document.querySelectorAll('.navlinks a:not(.nav-cta)')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  let ticking=false;
+  const update=()=>{
+    ticking=false;
+    const max=document.documentElement.scrollHeight-innerHeight;
+    progress.style.width=(max>0?scrollY/max*100:0)+'%';
+    toTop.classList.toggle('show',scrollY>600);
+    let cur=0;
+    secs.forEach((el,k)=>{if(el&&el.offsetParent&&el.getBoundingClientRect().top<140)cur=k;});
+    links.forEach((a,k)=>a.classList.toggle('active',k===cur));
+  };
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true}); update();
+  toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
-    // ===== "How did you hear about us?" -> optional detail field =====
-    (function(){
-      const src = document.getElementById('source');
-      const wrap = document.getElementById('sourceDetailField');
-      const label = document.getElementById('sourceDetailLabel');
-      const input = document.getElementById('sourceDetail');
-      const hints = {
-        'Social media': ['Which platform? (optional)', 'e.g. Instagram, Facebook, YouTube'],
-        'Agent': ['Agent name (optional)', 'Name of the agent who told you'],
-        'Friend or relative': ['Their name (optional)', 'Name of the person who referred you'],
-        'Other': ['Please tell us (optional)', 'e.g. newspaper, poster, school']
-      };
-      src.addEventListener('change', () => {
-        const h = hints[src.value];
-        wrap.hidden = !h;
-        if (h) { label.textContent = h[0]; input.placeholder = h[1]; } else { input.value = ''; }
-      });
-    })();
+  const phone=innerWidth<=560;
+  const targets=document.querySelectorAll('.section-head,.step,.gallery-tile,.about-grid>*,.contact-grid>*,.cta-panel');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+    targets.forEach((el,k)=>{el.classList.add('reveal');el.style.transitionDelay=(phone?0:(k%3)*90)+'ms';io.observe(el);});
+  }
 
-    // ===== Enquiry: save to Firestore (via tracker.js), then open WhatsApp =====
-    async function sendEnquiry(event) {
-      event.preventDefault();
+  const nameInput=document.getElementById('name'), fg=document.getElementById('formGreet');
+  nameInput.addEventListener('input',()=>{const n=nameInput.value.trim().split(' ')[0];fg.textContent=n?'Hi '+n+', send your admission enquiry':'Send an admission enquiry';});
+})();
 
-      const form = event.target;
-      const btn = form.querySelector('button[type="submit"]');
-
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const courseSelect = document.getElementById('course').value;
-      const otherCourse = document.getElementById('otherCourse').value.trim();
-      const stateSelect = document.getElementById('state').value;
-      const otherState = document.getElementById('otherState').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const location = document.getElementById('location').value.trim();
-      const source = document.getElementById('source').value;
-      const sourceDetail = document.getElementById('sourceDetail').value.trim();
-
-      const isOtherCourse = courseSelect === 'Other UG / PG course';
-      const isOtherState = stateSelect === 'Other state';
-
-      if (!name || !phone || !courseSelect || !stateSelect || !location || !source ||
-          (isOtherCourse && !otherCourse) || (isOtherState && !otherState)) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-
-      const course = isOtherCourse ? otherCourse : courseSelect;
-      const preferredState = isOtherState ? otherState : stateSelect;
-
-      const whatsappText =
-        `Hello Genuine Edu-Solutions!\n\n` +
-        `Name: ${name}\n` +
-        `Phone: ${phone}\n` +
-        `Course: ${course}\n` +
-        `Preferred state: ${preferredState}\n` +
-        `Current location: ${location}\n` +
-        `Heard about us via: ${source}${sourceDetail ? ' (' + sourceDetail + ')' : ''}\n` +
-        `Message: ${message || 'I would like more information.'}`;
-
-      const whatsappURL = `https://wa.me/918921296288?text=${encodeURIComponent(whatsappText)}`;
-
-      btn.disabled = true;
-      btn.textContent = "Saving enquiry...";
-
-      try {
-        if (!window.GES || typeof window.GES.saveEnquiry !== "function") {
-          throw new Error("Firebase tracker is not loaded.");
-        }
-
-        const enquiryId = await window.GES.saveEnquiry({
-          name,
-          phone,
-          course,
-          courseOption: courseSelect,
-          state: preferredState,
-          stateOption: stateSelect,
-          location,
-          heardFrom: source,
-          heardFromDetail: sourceDetail,
-          message
-        });
-
-        if (!enquiryId) throw new Error("Enquiry was not saved.");
-
-        console.log("Enquiry saved:", enquiryId);
-        btn.textContent = "Enquiry saved! Opening WhatsApp...";
-        window.location.href = whatsappURL;
-
-      } catch (error) {
-        console.error("Enquiry submission error:", error);
-        alert("We couldn't save your enquiry. Please try again.\n\n" + error.message);
-        btn.disabled = false;
-        btn.textContent = "Try again";
-      }
+/* ===== Courses: cards, filter chips, form prefill ===== */
+(function(){
+  const grid=document.getElementById('ccGrid'), course=document.getElementById('course'), state=document.getElementById('state');
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const LABEL={health:'Healthcare',biz:'Business',tech:'Technology',more:'More options'};
+  const ART={
+    health:'<svg viewBox="0 0 260 150" aria-hidden="true"><circle cx="130" cy="72" r="46" fill="#fff" opacity=".95"/><rect x="119" y="46" width="22" height="52" rx="6" fill="#16b496"/><rect x="104" y="61" width="52" height="22" rx="6" fill="#16b496"/><path class="ecg" d="M10 124h58l10-22 14 40 12-30 8 12h148" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><g class="float" fill="#fff" opacity=".7"><rect x="30" y="26" width="5" height="16" rx="2"/><rect x="24.5" y="31.5" width="16" height="5" rx="2"/><rect x="214" y="40" width="5" height="16" rx="2"/><rect x="208.5" y="45.5" width="16" height="5" rx="2"/></g></svg>',
+    biz:'<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="40" y="22" width="180" height="104" rx="14" fill="#fff" opacity=".96"/><rect class="gb b1" x="68" y="76" width="22" height="38" rx="5" fill="#9adbcd"/><rect class="gb b2" x="104" y="58" width="22" height="56" rx="5" fill="#16b496"/><rect class="gb b3" x="140" y="44" width="22" height="70" rx="5" fill="#0e8f78"/><rect class="gb b4" x="176" y="34" width="22" height="80" rx="5" fill="#f5a623"/><circle cx="224" cy="30" r="5" fill="#fff" class="float"/></svg>',
+    tech:'<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="24" width="136" height="88" rx="10" fill="#10303a"/><rect x="68" y="30" width="124" height="76" rx="6" fill="#1f3b4d"/><g class="code" stroke-linecap="round" stroke-width="5"><path d="M80 48h34" stroke="#f5a623"/><path d="M80 62h60" stroke="#fff"/><path d="M92 76h44" stroke="#16b496"/><path d="M80 90h28" stroke="#9adbcd"/></g><path d="M44 118h172l-12 14H56z" fill="#fff" opacity=".9"/><text class="float" x="24" y="52" font-family="monospace" font-size="22" font-weight="700" fill="#fff" opacity=".8">&lt;/&gt;</text><text class="float" x="200" y="78" font-family="monospace" font-size="20" font-weight="700" fill="#fff" opacity=".7">{ }</text></svg>',
+    more:'<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="104" width="136" height="14" rx="4" fill="#fff" opacity=".9"/><rect x="72" y="90" width="116" height="14" rx="4" fill="#f5a623"/><rect x="82" y="76" width="96" height="14" rx="4" fill="#fff" opacity=".8"/><g class="cap"><path d="M130 22l-70 28 70 28 70-28z" fill="#10303a"/><path d="M92 62v18c10 8 26 12 38 12s28-4 38-12V62l-38 15z" fill="#1f3b4d"/><path d="M198 50v30" stroke="#f5a623" stroke-width="4" stroke-linecap="round"/><circle cx="198" cy="84" r="6" fill="#f5a623"/></g><g class="float" fill="#fff" opacity=".8"><circle cx="34" cy="40" r="4"/><circle cx="228" cy="26" r="5"/><circle cx="40" cy="96" r="3"/></g></svg>'
+  };
+  const DEFAULTS=[
+    {title:'BSc Nursing',category:'health',description:'Explore undergraduate nursing education and admission options.'},
+    {title:'GNM',category:'health',description:'Learn about General Nursing and Midwifery study pathways.'},
+    {title:'BOT & BPT',category:'health',description:'Explore opportunities in occupational and physiotherapy education.',links:[['BOT','Enquire BOT →'],['BPT','Enquire BPT →']]},
+    {title:'BBA',category:'biz',description:'Find out about business administration study options.'},
+    {title:'BCA',category:'tech',description:'Explore undergraduate computer applications programmes.'},
+    {title:'UG & PG Programmes',category:'more',description:'Ask us about other undergraduate and postgraduate courses.',links:[['Other UG / PG course','Enquire about this course →']]}
+  ];
+  function card(c){
+    const cat=LABEL[c.category]?c.category:'more';
+    const art=c.imageUrl?`<img class="cc-img" src="${esc(c.imageUrl)}" alt="${esc(c.title)}" loading="lazy" referrerpolicy="no-referrer">`:ART[cat];
+    const links=(c.links||[[c.title,'Enquire about this course →']]).map(l=>`<a class="cc-link" href="#contact" data-course="${esc(l[0])}">${esc(l[1])}</a>`).join('');
+    return `<article class="cc" data-cat="${cat}"><div class="art">${art}<span class="tag">${LABEL[cat]}</span></div><div class="cc-body"><h3>${esc(c.title)}</h3><p>${esc(c.description||'')}</p><div class="cc-links">${links}</div></div></article>`;
+  }
+  function applyFilter(){
+    const a=document.querySelector('.chip-f.active'), f=a?a.dataset.f:'all';
+    grid.querySelectorAll('.cc').forEach(x=>x.classList.toggle('hide',f!=='all'&&x.dataset.cat!==f));
+  }
+  /* Used at start-up with the built-in list, and again by the Firestore script */
+  window.renderCourses=function(list,rebuildSelect){
+    grid.innerHTML=list.map(card).join('');
+    grid.querySelectorAll('.cc-img').forEach(img=>img.addEventListener('error',()=>{img.outerHTML=ART[img.closest('.cc').dataset.cat];},{once:true}));
+    if(rebuildSelect){
+      const keep=course.value;
+      course.innerHTML='<option value="">Select a course</option>'+list.map(c=>`<option>${esc(c.title)}</option>`).join('')+'<option>Other UG / PG course</option><option>Not sure yet</option>';
+      if([...course.options].some(o=>o.value===keep))course.value=keep;
     }
-    window.sendEnquiry = sendEnquiry;
-  </script>
-
-  <!-- ===== Courses from the admin panel (Firestore) ===== -->
-  <script type="module">
-  import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  const cfg = {
-    apiKey: "AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54",
-    authDomain: "genuineedusolutions-5e2c2.firebaseapp.com",
-    projectId: "genuineedusolutions-5e2c2",
-    storageBucket: "genuineedusolutions-5e2c2.firebasestorage.app",
-    messagingSenderId: "7797802437",
-    appId: "1:7797802437:web:f72b54f67bf4a6e2e677ac"
-  };
-  let app;
-  try { app = getApp(); } catch { app = initializeApp(cfg); }
-  const db = getFirestore(app);
-
-  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-
-  const THEME = {
-    health: ["#5b45e0", "#8a6cf5", "Healthcare"],
-    biz:    ["#e0562a", "#ffb84d", "Business"],
-    tech:   ["#2a2870", "#5b45e0", "Technology"],
-    more:   ["#1b1a4e", "#c2486f", "More options"]
-  };
-
-  // SVG fallback used when a course has no image
-  const ART = {
-    health: `<svg viewBox="0 0 260 150" aria-hidden="true"><circle cx="130" cy="72" r="46" fill="#fff" opacity=".95"/><rect x="119" y="46" width="22" height="52" rx="6" fill="#e0562a"/><rect x="104" y="61" width="52" height="22" rx="6" fill="#e0562a"/><path class="ecg" d="M10 124h58l10-22 14 40 12-30 8 12h148" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg>`,
-    biz:    `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="40" y="22" width="180" height="104" rx="14" fill="#fff" opacity=".96"/><rect x="68" y="76" width="22" height="38" rx="5" fill="#8a6cf5"/><rect x="104" y="58" width="22" height="56" rx="5" fill="#5b45e0"/><rect x="140" y="44" width="22" height="70" rx="5" fill="#e0562a"/><rect x="176" y="34" width="22" height="80" rx="5" fill="#ffb84d"/></svg>`,
-    tech:   `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="24" width="136" height="88" rx="10" fill="#1b1a4e"/><rect x="68" y="30" width="124" height="76" rx="6" fill="#2a2870"/><path d="M80 48h34" stroke="#ffb84d" stroke-width="5" stroke-linecap="round"/><path d="M80 62h60" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M92 76h44" stroke="#8a6cf5" stroke-width="5" stroke-linecap="round"/><path d="M44 118h172l-12 14H56z" fill="#fff" opacity=".9"/></svg>`,
-    more:   `<svg viewBox="0 0 260 150" aria-hidden="true"><rect x="62" y="104" width="136" height="14" rx="4" fill="#fff" opacity=".9"/><rect x="72" y="90" width="116" height="14" rx="4" fill="#ffb84d"/><rect x="82" y="76" width="96" height="14" rx="4" fill="#fff" opacity=".8"/><path d="M130 22l-70 28 70 28 70-28z" fill="#1b1a4e"/><path d="M92 62v18c10 8 26 12 38 12s28-4 38-12V62l-38 15z" fill="#2a2870"/></svg>`
-  };
-
-  const grid = document.getElementById("ccGrid");
-  const courseSelect = document.getElementById("course");
-
-  function cardHTML(c) {
-    const cat = THEME[c.category] ? c.category : "more";
-    const [a, b, label] = THEME[cat];
-    const art = c.imageUrl
-      ? `<img class="cc-img" src="${esc(c.imageUrl)}" alt="${esc(c.title)}" loading="lazy" referrerpolicy="no-referrer">`
-      : ART[cat];
-    return `<article class="cc" data-cat="${cat}" style="--a:${a};--b:${b}">
-      <div class="art">${art}<span class="tag">${label}</span></div>
-      <div class="cc-body">
-        <h3>${esc(c.title)}</h3>
-        <p>${esc(c.description || "")}</p>
-        <div class="cc-links"><a class="cc-link" href="#contact" data-course="${esc(c.title)}">Enquire about this course →</a></div>
-      </div>
-    </article>`;
-  }
-
-  function applyFilter() {
-    const active = document.querySelector(".chip-f.active");
-    const f = active ? active.dataset.f : "all";
-    document.querySelectorAll("#ccGrid .cc").forEach(card =>
-      card.classList.toggle("hide", f !== "all" && card.dataset.cat !== f));
-  }
-
-  function render(list) {
-    grid.innerHTML = list.map(cardHTML).join("");
-
-    // broken image -> SVG fallback
-    grid.querySelectorAll(".cc-img").forEach(img => img.addEventListener("error", () => {
-      const cat = img.closest(".cc").dataset.cat;
-      img.outerHTML = ART[cat];
-    }, { once: true }));
-
-    // rebuild the form's course dropdown
-    const keep = courseSelect.value;
-    courseSelect.innerHTML = '<option value="">Select a course</option>' +
-      list.map(c => `<option>${esc(c.title)}</option>`).join("") +
-      '<option>Other UG / PG course</option><option>Not sure yet</option>';
-    if ([...courseSelect.options].some(o => o.value === keep)) courseSelect.value = keep;
-
     applyFilter();
-  }
+  };
+  window.renderCourses(DEFAULTS,false);
 
-  // "Enquire" links on dynamic cards -> prefill the form
-  grid.addEventListener("click", e => {
-    const a = e.target.closest("[data-course]");
-    if (!a) return;
-    courseSelect.value = a.dataset.course;
-    courseSelect.dispatchEvent(new Event("change"));
+  const chips=[...document.querySelectorAll('.chip-f')];
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>x.classList.toggle('active',x===c));
+    applyFilter(); grid.scrollTo({left:0});
+    c.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  }));
+
+  const otherCourseField=document.getElementById('otherCourseField'), otherStateField=document.getElementById('otherStateField');
+  const syncOther=()=>{
+    const sc=course.value==='Other UG / PG course', ss=state.value==='Other state';
+    otherCourseField.hidden=!sc; otherStateField.hidden=!ss;
+    document.getElementById('otherCourse').required=sc; document.getElementById('otherState').required=ss;
+  };
+  course.addEventListener('change',syncOther); state.addEventListener('change',syncOther);
+
+  /* Any "Enquire" / "Talk to an advisor" link pre-selects the course (works for admin-panel cards too) */
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('[data-course]'); if(!a)return;
+    course.value=a.dataset.course; if(course.value!==a.dataset.course)course.value=''; syncOther();
   });
+})();
 
-  // Live data from the admin panel
-  onSnapshot(
-    query(collection(db, "courses"), orderBy("displayOrder", "asc")),
-    snap => {
-      const list = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(c => c.active !== false && c.title);
-      if (list.length) render(list);   // if none, the built-in cards stay as a fallback
-    },
-    err => console.warn("Courses could not be loaded, showing defaults:", err)
-  );
-  </script>
+/* ===== "How did you hear about us?" detail field ===== */
+(function(){
+  const src=document.getElementById('source'), wrap=document.getElementById('sourceDetailField'),
+        label=document.getElementById('sourceDetailLabel'), input=document.getElementById('sourceDetail');
+  const hints={'Social media':['Which platform? (optional)','e.g. Instagram, Facebook, YouTube'],'Agent':['Agent name (optional)','Name of the agent who told you'],'Friend or relative':['Their name (optional)','Name of the person who referred you'],'Other':['Please tell us (optional)','e.g. newspaper, poster, school']};
+  src.addEventListener('change',()=>{const h=hints[src.value];wrap.hidden=!h;if(h){label.textContent=h[0];input.placeholder=h[1];}else{input.value='';}});
+})();
 
-  <!-- ===== Gallery from the admin panel (Firestore + Cloudinary) ===== -->
-  <script type="module">
-  import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  const cfg = { apiKey:"AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54", authDomain:"genuineedusolutions-5e2c2.firebaseapp.com", projectId:"genuineedusolutions-5e2c2", storageBucket:"genuineedusolutions-5e2c2.firebasestorage.app", messagingSenderId:"7797802437", appId:"1:7797802437:web:f72b54f67bf4a6e2e677ac" };
-  let app; try { app = getApp(); } catch { app = initializeApp(cfg); }
-  const db = getFirestore(app);
-  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-  const opt = u => u.includes("/upload/") ? u.replace("/upload/", "/upload/f_auto,q_auto,w_1200/") : u;
-  const grid = document.querySelector("#gallery .gallery-grid");
-  onSnapshot(query(collection(db, "gallery"), orderBy("displayOrder", "asc")), snap => {
-    const list = snap.docs.map(d => d.data()).filter(g => g.active !== false && g.imageUrl);
-    if (!list.length) return;   // no photos yet: keep the built-in tiles
-    grid.innerHTML = list.map(g =>
-      `<div class="gallery-tile"><img class="image-loaded" src="${esc(opt(g.imageUrl))}" alt="${esc(g.caption || "Gallery photo")}" loading="lazy">${g.caption ? `<span>${esc(g.caption)}</span>` : ""}</div>`
-    ).join("");
-  }, err => console.warn("Gallery could not be loaded, showing defaults:", err));
+/* ===== Enquiry: save to Firestore (tracker.js), then open WhatsApp ===== */
+async function sendEnquiry(event){
+  event.preventDefault();
+  const btn=event.target.querySelector('button[type="submit"]');
+  const v=id=>document.getElementById(id).value.trim();
+  const name=v('name'),phone=v('phone'),courseSelect=v('course'),otherCourse=v('otherCourse'),stateSelect=v('state'),otherState=v('otherState'),
+        message=v('message'),location=v('location'),source=v('source'),sourceDetail=v('sourceDetail');
+  const isOtherCourse=courseSelect==='Other UG / PG course', isOtherState=stateSelect==='Other state';
+  if(!name||!phone||!courseSelect||!stateSelect||!location||!source||(isOtherCourse&&!otherCourse)||(isOtherState&&!otherState)){
+    alert('Please fill in all required fields.'); return;
+  }
+  const course=isOtherCourse?otherCourse:courseSelect, preferredState=isOtherState?otherState:stateSelect;
+  const text=`Hello Genuine Edu-Solutions!\n\nName: ${name}\nPhone: ${phone}\nCourse: ${course}\nPreferred state: ${preferredState}\nCurrent location: ${location}\nHeard about us via: ${source}${sourceDetail?' ('+sourceDetail+')':''}\nMessage: ${message||'I would like more information.'}`;
+  const url=`https://wa.me/918921296288?text=${encodeURIComponent(text)}`;
+  btn.disabled=true; btn.textContent='Saving enquiry...';
+  try{
+    if(!window.GES||typeof window.GES.saveEnquiry!=='function')throw new Error('Firebase tracker is not loaded.');
+    const id=await window.GES.saveEnquiry({name,phone,course,courseOption:courseSelect,state:preferredState,stateOption:stateSelect,location,heardFrom:source,heardFromDetail:sourceDetail,message});
+    if(!id)throw new Error('Enquiry was not saved.');
+    btn.textContent='Enquiry saved! Opening WhatsApp...';
+    window.location.href=url;
+  }catch(err){
+    console.error('Enquiry submission error:',err);
+    alert("We couldn't save your enquiry. Please try again.\n\n"+err.message);
+    btn.disabled=false; btn.textContent='Try again';
+  }
+}
+window.sendEnquiry=sendEnquiry;
+</script>
 
-
-
-
-
-
-
-  
-  </script>
-
-
-
-<!-- ===== Reviews from the admin panel (Firestore) ===== -->
+<!-- ===== Live content from the admin panel (Firestore): courses, gallery, student stories ===== -->
 <script type="module">
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const cfg = { apiKey:"AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54", authDomain:"genuineedusolutions-5e2c2.firebaseapp.com", projectId:"genuineedusolutions-5e2c2", storageBucket:"genuineedusolutions-5e2c2.firebasestorage.app", messagingSenderId:"7797802437", appId:"1:7797802437:web:f72b54f67bf4a6e2e677ac" };
+
+const cfg = {
+  apiKey:"AIzaSyACJNjKWv97UGevG7NNTNEJTN4XxVQlV54", authDomain:"genuineedusolutions-5e2c2.firebaseapp.com",
+  projectId:"genuineedusolutions-5e2c2", storageBucket:"genuineedusolutions-5e2c2.firebasestorage.app",
+  messagingSenderId:"7797802437", appId:"1:7797802437:web:f72b54f67bf4a6e2e677ac"
+};
 let app; try { app = getApp(); } catch { app = initializeApp(cfg); }
 const db = getFirestore(app);
+const live = name => query(collection(db, name), orderBy("displayOrder", "asc"));
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-const section = document.getElementById("reviews");
-const grid = document.getElementById("reviewGrid");
-const moreBtn = document.getElementById("reviewMore");
-const VISIBLE = 3;
-const stars = n => { n = Math.max(1, Math.min(5, Math.round(Number(n) || 5))); return "★".repeat(n) + "☆".repeat(5 - n); };
-const initials = name => String(name || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
-onSnapshot(query(collection(db, "reviews"), orderBy("displayOrder", "asc")), snap => {
-  const list = snap.docs.map(d => d.data()).filter(r => r.active !== false && r.name && r.text);
-  if (!list.length) { section.hidden = true; return; }
-  section.hidden = false;
 
-  const avg = list.reduce((a, r) => a + (Number(r.rating) || 5), 0) / list.length;
-  document.getElementById("ratingAvg").textContent = avg.toFixed(1);
-  document.getElementById("ratingStars").textContent = stars(avg);
-  document.getElementById("ratingStars").setAttribute("aria-label", avg.toFixed(1) + " out of 5 stars");
-  document.getElementById("ratingCount").textContent = "Based on " + list.length + (list.length === 1 ? " review" : " reviews");
+/* ---- Courses ---- */
+onSnapshot(live("courses"), snap => {
+  const list = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(c => c.active !== false && c.title);
+  if (list.length) window.renderCourses(list, true);   // none → built-in cards stay
+}, err => console.warn("Courses could not be loaded, showing defaults:", err));
+
+/* ---- Gallery ---- */
+const opt = u => u.includes("/upload/") ? u.replace("/upload/", "/upload/f_auto,q_auto,w_1200/") : u;
+const gallery = document.querySelector("#gallery .gallery-grid");
+onSnapshot(live("gallery"), snap => {
+  const list = snap.docs.map(d => d.data()).filter(g => g.active !== false && g.imageUrl);
+  if (!list.length) return;   // none → built-in tiles stay
+  gallery.innerHTML = list.map(g =>
+    `<div class="gallery-tile"><img class="image-loaded" src="${esc(opt(g.imageUrl))}" alt="${esc(g.caption || "Gallery photo")}" loading="lazy">${g.caption ? `<span>${esc(g.caption)}</span>` : ""}</div>`
+  ).join("");
+}, err => console.warn("Gallery could not be loaded, showing defaults:", err));
+
+/* ---- Student stories + rating (collection name: change here if your admin panel uses another) ---- */
+const STORIES = "reviews", VISIBLE = 3;
+const stars = n => { n = Math.max(1, Math.min(5, Math.round(Number(n) || 5))); return "★".repeat(n) + "☆".repeat(5 - n); };
+const initials = n => String(n || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+const section = document.getElementById("stories"), grid = document.getElementById("reviewGrid"),
+      moreBtn = document.getElementById("reviewMore"), summary = section.querySelector(".rating-summary"),
+      navLink = document.querySelector('.navlinks a[href="#stories"]');
+
+onSnapshot(live(STORIES), snap => {
+  const list = snap.docs.map(d => d.data()).filter(s => s.active !== false && s.name && (s.story || s.text));
+  if (!list.length) { section.hidden = true; navLink.hidden = true; return; }   // nothing to show → hide section + nav link
+  section.hidden = false; navLink.hidden = false;
+
+  const rated = list.map(s => Number(s.rating)).filter(n => n >= 1 && n <= 5);   // rating comes only from the stories
+  summary.hidden = !rated.length;
+  if (rated.length) {
+    const avg = rated.reduce((a, n) => a + n, 0) / rated.length;
+    document.getElementById("ratingAvg").textContent = avg.toFixed(1);
+    document.getElementById("ratingStars").textContent = stars(avg);
+    document.getElementById("ratingStars").setAttribute("aria-label", avg.toFixed(1) + " out of 5 stars");
+    document.getElementById("ratingCount").textContent = "Based on " + rated.length + (rated.length === 1 ? " story" : " stories");
+  }
 
   grid.classList.remove("expanded");
-  grid.innerHTML = list.map((r, i) => `
-    <article class="review-card${i >= VISIBLE ? " extra" : ""}">
-      <div class="stars" aria-label="${Number(r.rating) || 5} out of 5 stars">${stars(r.rating)}</div>
-      <blockquote>“${esc(r.text)}”</blockquote>
-      <div class="review-person"><div class="review-avatar">${esc(initials(r.name))}</div><div><strong>${esc(r.name)}</strong>${r.location ? `<small>${esc(r.location)}</small>` : ""}</div></div>
-    </article>`).join("");
+  grid.innerHTML = list.map((s, i) => {
+    const sub = [s.college, s.location].filter(Boolean).join(" · ");
+    const avatar = s.photoUrl
+      ? `<img class="review-avatar" src="${esc(s.photoUrl)}" alt="${esc(s.name)}" loading="lazy" referrerpolicy="no-referrer">`
+      : `<div class="review-avatar">${esc(initials(s.name))}</div>`;
+    return `<article class="review-card${i >= VISIBLE ? " extra" : ""}">
+      ${Number(s.rating) ? `<div class="stars" aria-label="${Number(s.rating)} out of 5 stars">${stars(s.rating)}</div>` : ""}
+      ${s.course ? `<div class="story-tag">${esc(s.course)}</div>` : ""}
+      <blockquote>“${esc(s.story || s.text)}”</blockquote>
+      <div class="review-person">${avatar}<div><strong>${esc(s.name)}</strong>${sub ? `<small>${esc(sub)}</small>` : ""}</div></div>
+    </article>`;
+  }).join("");
 
   moreBtn.hidden = list.length <= VISIBLE;
-  moreBtn.textContent = "View more reviews ↓";
-}, err => console.warn("Reviews could not be loaded:", err));
+  moreBtn.textContent = "View more stories ↓";
+}, err => console.warn("Stories could not be loaded:", err));
 
 moreBtn.addEventListener("click", () => {
   const open = grid.classList.toggle("expanded");
-  moreBtn.textContent = open ? "Show fewer reviews ↑" : "View more reviews ↓";
+  moreBtn.textContent = open ? "Show fewer stories ↑" : "View more stories ↓";
   if (!open) section.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 </script>
 </body>
+</html>
