@@ -10,7 +10,76 @@
 <link rel="icon" type="image/jpeg" href="assets/icon.jpg">
 <link rel="apple-touch-icon" href="assets/icon.jpg">
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <script type="module" src="tracker.js"></script>
+
+<!-- Student story "Read more" diary dialog -->
+<style>
+.read-more{
+  display:inline-block;background:none;border:0;padding:0;margin:0 0 14px;
+  color:#0e8f78;font:inherit;font-weight:700;cursor:pointer;
+}
+.read-more:hover{text-decoration:underline}
+
+#reviewDialog{
+  position:fixed;
+  width:min(620px,92vw);margin:auto;border:0;padding:0;overflow:hidden;
+  background:#fffdf5;color:#2f2a24;border-radius:6px 16px 16px 6px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+#reviewDialog::backdrop{background:rgba(20,15,10,.6)}
+
+/* spiral binding */
+#reviewDialog::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:34px;z-index:3;
+  background-color:#e9dfc4;
+  background-image:radial-gradient(circle at 50% 50%,#4a3f33 0 5px,#b9ad8f 6px 7px,transparent 8px);
+  background-size:34px 36px;background-repeat:repeat-y;
+  box-shadow:inset -3px 0 6px rgba(0,0,0,.12);
+  pointer-events:none;
+}
+#reviewDialog .rd-close{position:absolute;top:8px;right:14px;z-index:4;background:none;border:0;
+  font-size:30px;line-height:1;cursor:pointer;color:#8a7a66;padding:0}
+#reviewDialog .rd-close:hover{color:#b3261e}
+
+/* one continuous vertical scroll: next story starts only when you scroll past the end of this one */
+#reviewDialog .rd-track{
+  display:block;position:relative;overflow-y:auto;overflow-x:hidden;
+  max-height:62vh;scroll-snap-type:none;
+}
+
+/* ruled page with red margin line */
+#reviewDialog .rd-slide{
+  display:block;box-sizing:border-box;
+  padding:44px 28px 40px 78px;
+  border-bottom:2px dashed #d8cfb6;
+  font-family:'Caveat','Segoe Print','Bradley Hand',cursive;font-size:23px;line-height:32px;
+  background-image:
+    linear-gradient(90deg,transparent 58px,#e57373 58px,#e57373 60px,transparent 60px),
+    repeating-linear-gradient(transparent 0 31px,#cfe0ee 31px 32px);
+}
+#reviewDialog .rd-slide:last-child{border-bottom:0}
+
+/* top block: stars, name, place */
+#reviewDialog .rd-head{margin:0 0 32px;padding:0}
+#reviewDialog .rd-head .stars{color:#e0961a;font-size:22px;letter-spacing:3px;line-height:32px;margin:0}
+#reviewDialog .rd-head strong{display:block;font-size:30px;font-weight:700;line-height:32px;color:#0a5f52}
+#reviewDialog .rd-head small{display:block;font-size:21px;line-height:32px;color:#7a6c5a}
+#reviewDialog .rd-head .story-tag{display:inline-block;line-height:24px;margin-top:4px;font-size:16px}
+#reviewDialog .rd-slide blockquote{
+  margin:0;padding:0;border:0;background:none;box-shadow:none;
+  font:inherit;font-style:normal;line-height:32px;white-space:pre-line;color:#2f2a24;
+}
+#reviewDialog .rd-slide blockquote::before,#reviewDialog .rd-slide blockquote::after{content:none}
+
+/* footer with page number */
+#reviewDialog .rd-nav{display:flex;align-items:center;justify-content:space-between;
+  padding:8px 20px 12px 54px;border-top:1px dashed #d8cfb6;background:#fffdf5;
+  font-family:'Caveat','Segoe Print',cursive;font-size:22px;color:#7a6c5a}
+#reviewDialog .rd-nav button{width:38px;height:38px;border-radius:50%;border:1px solid #d8cfb6;
+  background:#fff8e1;font-size:22px;cursor:pointer;color:#5a4a3a;padding:0}
+#reviewDialog .rd-nav button:hover{background:#f3e7c3}
+</style>
 
 <!-- Cinema film-strip story ticker + header fix (self-contained, no changes needed in style.css) -->
 <style>
@@ -127,8 +196,6 @@
         </div>
         <div class="hero-note">Personal guidance • Course information • Admission support</div>
       </div>
-
-     
     </div>
 
     <!-- Row 2: the kids -->
@@ -138,12 +205,6 @@
     <div class="hero-story" id="heroStory" hidden aria-label="What our students say">
       <div class="hs-viewport" id="hsViewport"><div class="hs-track" id="hsTrack"></div></div>
     </div>
-
-     <!-- <aside class="hero-card">
-        <div class="cap">Find your direction</div>
-        <h2>Explore pathways across popular study fields.</h2>
-        <div class="course-pills"><span>BSc Nursing</span><span>GNM</span><span>BBA</span><span>BCA</span><span>BOT</span><span>BPT</span><span>UG &amp; PG</span><span>And more</span></div>
-      </aside> -->
 
   </div>
 </section>
@@ -258,6 +319,16 @@
       <div class="reviews-more"><button class="btn btn-primary" id="reviewMore" type="button" hidden>View more stories ↓</button></div>
     </div>
   </section>
+
+  <dialog id="reviewDialog" class="review-dialog" aria-label="Student story">
+    <button class="rd-close" type="button" aria-label="Close">×</button>
+    <div class="rd-track" id="rdTrack"></div>
+    <div class="rd-nav">
+      <button type="button" id="rdPrev" aria-label="Previous story">‹</button>
+      <span id="rdCount"></span>
+      <button type="button" id="rdNext" aria-label="Next story">›</button>
+    </div>
+  </dialog>
 
   <div class="cta">
     <div class="container">
@@ -539,17 +610,15 @@ onSnapshot(live("gallery"), snap => {
   ).join("");
 }, err => console.warn("Gallery could not be loaded, showing defaults:", err));
 
-/* ---- Student stories + rating (collection name: change here if your admin panel uses another) ---- */
-const STORIES = "reviews", VISIBLE = 3;
+/* ---- Student stories + rating ---- */
+const STORIES = "reviews", VISIBLE = 3, LIMIT = 400;
 const stars = n => { n = Math.max(1, Math.min(5, Math.round(Number(n) || 5))); return "★".repeat(n) + "☆".repeat(5 - n); };
 const initials = n => String(n || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase();
 const section = document.getElementById("stories"), grid = document.getElementById("reviewGrid"),
       moreBtn = document.getElementById("reviewMore"), summary = section.querySelector(".rating-summary"),
       navLink = document.querySelector('.navlinks a[href="#stories"]');
 
-/* ---- Hero film strip: student comments roll slowly like a cinema reel ----
-   UX rules: slow constant speed (transform only); pauses on hover / focus / touch / off-screen / hidden tab;
-   reduced-motion → manual swipe; 1 story → static; 2+ → seamless loop sized to the screen width */
+/* ---- Hero film strip: student comments roll slowly like a cinema reel ---- */
 const heroSection = document.getElementById("home"),
       heroBox = document.getElementById("heroStory"),
       heroView = document.getElementById("hsViewport"),
@@ -631,13 +700,17 @@ onSnapshot(live(STORIES), snap => {
   grid.classList.remove("expanded");
   grid.innerHTML = list.map((s, i) => {
     const sub = [s.college, s.location].filter(Boolean).join(" · ");
+    const full = String(s.story || s.text);
+    const long = full.length > LIMIT;
+    const shown = long ? full.slice(0, LIMIT).replace(/\s+\S*$/, "") + "…" : full;
     const avatar = s.photoUrl
       ? `<img class="review-avatar" src="${esc(s.photoUrl)}" alt="${esc(s.name)}" loading="lazy" referrerpolicy="no-referrer">`
       : `<div class="review-avatar">${esc(initials(s.name))}</div>`;
     return `<article class="review-card${i >= VISIBLE ? " extra" : ""}">
       ${Number(s.rating) ? `<div class="stars" aria-label="${Number(s.rating)} out of 5 stars">${stars(s.rating)}</div>` : ""}
       ${s.course ? `<div class="story-tag">${esc(s.course)}</div>` : ""}
-      <blockquote>“${esc(s.story || s.text)}”</blockquote>
+      <blockquote data-full="${esc(full)}">“${esc(shown)}”</blockquote>
+      ${long ? `<button type="button" class="read-more" data-i="${i}">Read more</button>` : ""}
       <div class="review-person">${avatar}<div><strong>${esc(s.name)}</strong>${sub ? `<small>${esc(sub)}</small>` : ""}</div></div>
     </article>`;
   }).join("");
@@ -650,6 +723,81 @@ moreBtn.addEventListener("click", () => {
   const open = grid.classList.toggle("expanded");
   moreBtn.textContent = open ? "Show fewer stories ↑" : "View more stories ↓";
   if (!open) section.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+/* ---- Read more dialog: one continuous scroll through all stories ---- */
+const dlg = document.getElementById("reviewDialog"),
+      rdTrack = document.getElementById("rdTrack"),
+      rdCount = document.getElementById("rdCount");
+
+const rdSlides = () => [...rdTrack.querySelectorAll(".rd-slide")];
+const rdTop = el => el.getBoundingClientRect().top - rdTrack.getBoundingClientRect().top + rdTrack.scrollTop;
+
+const rdIndex = () => {
+  const s = rdSlides();
+  if (!s.length) return 0;
+  if (rdTrack.scrollTop + rdTrack.clientHeight >= rdTrack.scrollHeight - 2) return s.length - 1;
+  const y = rdTrack.scrollTop + 10;
+  let k = 0;
+  s.forEach((el, i) => { if (rdTop(el) <= y) k = i; });
+  return k;
+};
+
+const rdUpdate = () => { rdCount.textContent = (rdIndex() + 1) + " / " + rdSlides().length; };
+
+const rdGo = d => {
+  const s = rdSlides();
+  const k = Math.max(0, Math.min(s.length - 1, rdIndex() + d));
+  rdTrack.scrollTo({ top: rdTop(s[k]), behavior: "smooth" });
+};
+
+/* safety net: force the vertical layout even if style.css has conflicting rules */
+const rdLayout = () => {
+  const set = (el, css) => Object.entries(css).forEach(([p, v]) => el.style.setProperty(p, v, "important"));
+  set(rdTrack, { display: "block", position: "relative", "overflow-y": "auto", "overflow-x": "hidden", "max-height": "62vh", "scroll-snap-type": "none" });
+  rdSlides().forEach(el => set(el, { flex: "none", "max-height": "none", overflow: "visible" }));
+};
+
+grid.addEventListener("click", e => {
+  const b = e.target.closest(".read-more");
+  if (!b) return;
+
+  const cards = [...grid.querySelectorAll(".review-card")];
+  const start = cards.indexOf(b.closest(".review-card"));
+
+  rdTrack.innerHTML = cards.map(c => {
+    const st = c.querySelector(".stars"),
+          tag = c.querySelector(".story-tag"),
+          who = c.querySelector(".review-person strong"),
+          sub = c.querySelector(".review-person small"),
+          text = c.querySelector("blockquote").dataset.full.replace(/^[“"\s]+|[”"\s]+$/g, "");
+    return `<div class="rd-slide">
+      <div class="rd-head">
+        ${st ? `<div class="stars">${esc(st.textContent)}</div>` : ""}
+        <strong>${esc(who.textContent)}</strong>
+        ${sub ? `<small>${esc(sub.textContent)}</small>` : ""}
+        ${tag ? `<div class="story-tag">${esc(tag.textContent)}</div>` : ""}
+      </div>
+      <blockquote>“${esc(text)}”</blockquote>
+    </div>`;
+  }).join("");
+
+  const y = scrollY;
+  dlg.showModal();
+  scrollTo(0, y);
+  rdLayout();
+  rdTrack.scrollTo({ top: rdTop(rdSlides()[start]), behavior: "instant" });
+  rdUpdate();
+});
+
+rdTrack.addEventListener("scroll", rdUpdate, { passive: true });
+document.getElementById("rdPrev").onclick = () => rdGo(-1);
+document.getElementById("rdNext").onclick = () => rdGo(1);
+dlg.querySelector(".rd-close").onclick = () => dlg.close();
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); rdGo(-1); }
+  if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); rdGo(1); }
 });
 </script>
 </body>

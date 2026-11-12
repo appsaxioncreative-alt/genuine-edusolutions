@@ -318,3 +318,89 @@ function courseStories() {
 }
 const _rc = window.renderCourses;                       // re-apply after admin-panel courses redraw
 window.renderCourses = (l, r) => { _rc(l, r); courseStories(); };
+
+
+
+
+
+
+
+
+
+
+const LIMIT = 400;
+let reviews = [];            // set this to your loaded, active reviews
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const starStr = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+
+function cardHTML(r, i){
+  const long = r.text.length > LIMIT;
+  const shown = long ? r.text.slice(0, LIMIT).replace(/\s+\S*$/, '') + '…' : r.text;
+  return `
+    <article class="review-card">
+      <div class="stars" aria-label="${r.rating} out of 5">${starStr(r.rating)}</div>
+      <p>${esc(shown)}</p>
+      ${long ? `<button type="button" class="read-more" data-i="${i}">Read more</button>` : ''}
+      <strong>${esc(r.name)}</strong>
+      ${r.location ? `<small>${esc(r.location)}</small>` : ''}
+    </article>`;
+}
+
+// Open dialog from any "Read more" button
+document.getElementById('reviewGrid').addEventListener('click', e => {
+  const b = e.target.closest('.read-more');
+  if (b) openReview(+b.dataset.i);
+});
+
+const dlg = document.getElementById('reviewDialog');
+const track = document.getElementById('rdTrack');
+const count = document.getElementById('rdCount');
+
+function openReview(i){
+  track.innerHTML = reviews.map(r => `
+    <div class="rd-slide">
+      <div class="stars">${starStr(r.rating)}</div>
+      <p>${esc(r.text)}</p>
+      <strong>${esc(r.name)}</strong>
+      ${r.location ? `<br><small>${esc(r.location)}</small>` : ''}
+    </div>`).join('');
+  dlg.showModal();
+  track.scrollTo({left: track.clientWidth * i, behavior: 'instant'});
+  updateCount();
+}
+
+function current(){ return Math.round(track.scrollLeft / track.clientWidth); }
+function updateCount(){ count.textContent = `${current() + 1} / ${reviews.length}`; }
+function go(d){ track.scrollBy({left: d * track.clientWidth, behavior: 'smooth'}); }
+
+track.addEventListener('scroll', updateCount);
+document.getElementById('rdPrev').onclick = () => go(-1);
+document.getElementById('rdNext').onclick = () => go(1);
+dlg.querySelector('.rd-close').onclick = () => dlg.close();
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });  // click outside
+dlg.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowRight') go(1);
+});
+
+
+grid.addEventListener("click", e => {
+  const b = e.target.closest(".read-more");
+  if (!b) return;
+  const cards = [...grid.querySelectorAll(".review-card")];
+  rdTrack.innerHTML = cards.map(c => {
+    const q = c.querySelector("blockquote");
+    return `<div class="rd-slide">
+      ${c.querySelector(".stars") ? `<div class="stars">${c.querySelector(".stars").textContent}</div>` : ""}
+      ${c.querySelector(".story-tag") ? `<div class="story-tag">${c.querySelector(".story-tag").textContent}</div>` : ""}
+      <blockquote>“${q.dataset.full}”</blockquote>
+      <strong>${c.querySelector(".review-person strong").textContent}</strong>
+      ${c.querySelector(".review-person small") ? `<small>${c.querySelector(".review-person small").textContent}</small>` : ""}
+    </div>`;
+  }).join("");
+  dlg.showModal();
+  rdTrack.scrollTo({ left: rdTrack.clientWidth * cards.indexOf(b.closest(".review-card")), behavior: "instant" });
+  rdCount.textContent = (cards.indexOf(b.closest(".review-card")) + 1) + " / " + cards.length;
+});

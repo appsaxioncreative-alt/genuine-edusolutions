@@ -697,3 +697,74 @@ footer small{font-size:12px}
 .hero p{
   text-shadow:0 2px 12px rgba(6,56,47,.55);
 }
+
+
+
+
+
+
+
+
+
+.review-dialog{
+  width:min(620px,92vw);border:0;padding:0;position:relative;overflow:hidden;
+  background:#fffdf5;color:#2f2a24;border-radius:6px 16px 16px 6px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.review-dialog::backdrop{background:rgba(20,15,10,.6)}
+
+/* spiral binding */
+.review-dialog::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:34px;z-index:3;
+  background-color:#e9dfc4;
+  background-image:radial-gradient(circle at 50% 50%,#4a3f33 0 5px,#b9ad8f 6px 7px,transparent 8px);
+  background-size:34px 36px;background-repeat:repeat-y;
+  box-shadow:inset -3px 0 6px rgba(0,0,0,.12);
+}
+
+.rd-close{position:absolute;top:8px;right:12px;z-index:4;background:none;border:0;
+  font-size:30px;line-height:1;cursor:pointer;color:#8a7a66}
+.rd-close:hover{color:#b3261e}
+
+.rd-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.rd-track::-webkit-scrollbar{display:none}
+
+/* ruled page with red margin line */
+.rd-slide{
+  flex:0 0 100%;scroll-snap-align:center;box-sizing:border-box;
+  max-height:62vh;overflow-y:auto;
+  padding:44px 28px 20px 78px;
+  font-family:'Caveat','Segoe Print','Bradley Hand',cursive;font-size:23px;line-height:32px;
+  background-image:
+    linear-gradient(90deg,transparent 58px,#e57373 58px,#e57373 60px,transparent 60px),
+    repeating-linear-gradient(transparent 0 31px,#cfe0ee 31px 32px);
+  background-position:0 0,0 44px;
+  background-attachment:scroll,local;
+}
+
+/* top block: stars, name, place */
+.rd-head{margin-bottom:32px}
+.rd-head .stars{color:#e0961a;font-size:22px;letter-spacing:3px;line-height:32px}
+.rd-head strong{display:block;font-size:30px;font-weight:700;line-height:32px;color:#0a5f52}
+.rd-head small{display:block;font-size:21px;line-height:32px;color:#7a6c5a}
+.rd-head .story-tag{display:inline-block;line-height:24px;margin-top:4px}
+
+.rd-slide blockquote{margin:0;padding:0;line-height:32px;white-space:pre-line;color:#2f2a24}
+
+/* page number footer */
+.rd-nav{display:flex;align-items:center;justify-content:space-between;
+  padding:8px 20px 12px 54px;border-top:1px dashed #d8cfb6;background:#fffdf5;
+  font-family:'Caveat','Segoe Print',cursive;font-size:22px;color:#7a6c5a}
+.rd-nav button{width:38px;height:38px;border-radius:50%;border:1px solid #d8cfb6;
+  background:#fff8e1;font-size:22px;cursor:pointer;color:#5a4a3a}
+.rd-nav button:hover{background:#f3e7c3}
+.review-dialog{
+  position:fixed;
+  width:min(620px,92vw);border:0;padding:0;overflow:hidden;
+  background:#fffdf5;color:#2f2a24;border-radius:6px 16px 16px 6px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}.read-more{
+  display:inline-block;background:none;border:0;padding:0;margin:0 0 14px;
+  color:#0e8f78;font:inherit;font-weight:700;cursor:pointer;
+}
+.read-more:hover{text-decoration:underline}
