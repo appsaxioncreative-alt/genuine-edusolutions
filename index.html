@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <script type="module" src="tracker.js"></script>
-
+<link rel="icon" href="https://genuineedusolutions.com/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="https://genuineedusolutions.com/assets/icon-192.png">
+<link rel="apple-touch-icon" href="https://genuineedusolutions.com/assets/icon-180.png">
 <!-- Student story "Read more" diary dialog -->
 <style>
 .read-more{
@@ -799,6 +801,22 @@ dlg.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); rdGo(-1); }
   if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); rdGo(1); }
 });
+
+/* Click (or Enter/Space) on a film frame → scroll to Student stories */
+const goToStories = () => {
+  if (section.hidden) return;
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+heroTrack.addEventListener("click", e => {
+  if (e.target.closest(".hs-card")) goToStories();
+});
+heroTrack.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.closest(".hs-card")) {
+    e.preventDefault();
+    goToStories();
+  }
+});
+
 </script>
 </body>
 </html>

@@ -768,3 +768,10 @@ footer small{font-size:12px}
   color:#0e8f78;font:inherit;font-weight:700;cursor:pointer;
 }
 .read-more:hover{text-decoration:underline}
+
+
+.hs-card{cursor:pointer}
+.hs-card:hover .hs-frame,
+.hs-card:focus-visible .hs-frame{box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),0 0 0 2px #f5a623,0 0 22px rgba(245,166,35,.35)}
+.hs-card:focus-visible{outline:none}
+#stories{scroll-margin-top:80px} /* keeps the heading clear of the sticky header */
